@@ -8,6 +8,7 @@ import Foundation
     
     var selectedMood: Mood? = nil
     var navigateToMissions: Bool = false
+    
     var userName: String = "Cris"
     
     func showMission() -> String {

@@ -33,6 +33,7 @@ struct Home: View {
 
 struct Welcome: View {
     @Environment(GetOuthereStore.self) var store
+    @AppStorage("firstName") var firstName = ""
     
     var body: some View {
         GeometryReader { geometry in
@@ -51,7 +52,7 @@ struct Welcome: View {
                     .font(.title2)
                     .opacity(0.8)
                 
-                Text("\(store.userName).")
+                Text("\(firstName).")
                     .font(.largeTitle)
                     .foregroundStyle(.green)
                     .bold()

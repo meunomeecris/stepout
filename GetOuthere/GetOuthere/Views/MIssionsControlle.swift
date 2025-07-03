@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MissionsControlle: View {
+struct MissionsControle: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
@@ -9,5 +9,5 @@ struct MissionsControlle: View {
 }
 
 #Preview {
-    MissionsControlle()
+    MissionsControle()
 }

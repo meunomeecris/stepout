@@ -57,7 +57,7 @@ struct SignInWithApple: View {
         
         print("User Identifier: \(userIdentifier)")
         print("Email: \(String(describing: email))")
-        print("Full Name: \(String(describing: firstName))")
+        print("First Name: \(String(describing: firstName))")
         
         self.userIdentifier = userIdentifier
         self.email = email ?? "getouthere@gmail.com"

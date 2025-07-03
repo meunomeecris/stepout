@@ -22,18 +22,27 @@ struct MoodPicker: View {
                         .padding(.top, 24)
                     
                     if let mood = store.selectedMood {
-                        Text(mood.rawValue)
+                            Text(mood.rawValue)
+                                .font(.headline)
+                                .bold()
+                                .foregroundStyle(mood.color)
+                                .kerning(3)
+                                .textCase(.uppercase)
+                                .padding(20)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .fill(mood.color.opacity(0.2))
+                                )
+                    } else {
+                        Text("MOOD")
+                            .font(.headline)
                             .bold()
                             .foregroundStyle(.green)
-                            .kerning(3)
-                            .font(.headline)
-                            .textCase(.uppercase)
                             .padding(20)
                             .background(
                                 RoundedRectangle(cornerRadius: 20)
-                                    .fill(Color.green.opacity(0.1))
+                                    .fill(Color.green.opacity(0.2))
                             )
-                    } else {
                     }
                 }
                 .padding(.bottom, 24)
@@ -42,12 +51,20 @@ struct MoodPicker: View {
                     ForEach(Mood.allCases) { mood in
                         Button {
                             store.selectedMood = mood
+                            store.moodColor = mood.color
                         } label: {
-                            Text(mood.emoji)
-                                .font(.system(size: 40))
-                                .padding()
-                                .background(store.selectedMood == mood ? Color.green.opacity(0.2) : Color.clear)
-                                .clipShape(Circle())
+                            VStack(spacing: 0) {
+                                Text(mood.emoji)
+                                    .font(.system(size: 40))
+                                    .padding()
+                                    .background(store.selectedMood == mood ? mood.color.opacity(0.3) : Color.clear)
+                                    .clipShape(Circle())
+                                Text(mood.rawValue)
+                                    .foregroundStyle(.white)
+                                    .textCase(.uppercase)
+                                    .font(.caption)
+                                    .kerning(2)
+                            }
                         }
                         
                     }
@@ -56,18 +73,19 @@ struct MoodPicker: View {
                 Spacer()
                 
                 if store.selectedMood != nil {
-                    Button("Get Outhere") {
+                    Button("Get my mission") {
                         store.navigateToMissions = true
                         store.showMission()
                     }
                     .foregroundStyle(.white)
                     .bold()
-                    .padding()
+                    .textCase(.uppercase)
+                    .padding(24)
                     .background(
                         RoundedRectangle(cornerRadius: 20)
-                            .fill(Color.green)
+                            .fill(Color.green.opacity(0.8))
                     )
-                    .opacity(0.8)
+                    
                 }
                 
                 Spacer()

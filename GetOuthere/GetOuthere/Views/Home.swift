@@ -2,26 +2,31 @@ import SwiftUI
 
 struct Home: View {
     @Environment(GetOuthereStore.self) var store
+    var moodColorBg = Color(.blue)
     
     var body: some View {
         NavigationStack {
-                VStack(spacing: 16) {
-                    Welcome(store: _store)
-                    
-                    MissionDashboard(store: _store)
-                    
-                    HStack {
-                        MyMood(store: _store)
-                        MyMission(store: _store)
+            VStack(spacing: 16) {
+                Welcome(store: _store)
+                
+                MissionDashboard(store: _store)
+                
+                HStack {
+                    MyMood(store: _store, color: store.moodColor)
+                    MyMission(store: _store)
+                }
+                
+                HStack {
+                    CardsHome(store: _store, image: "person", title: "Profile", cardColor: .red) {
+                        Profile()
                     }
-                    
-                    HStack {
-                        ProfileView(store: _store)
-                        CreateMission(store: _store)
+                    CardsHome(store: _store, image: "hands.and.sparkles", title: "Challenges", cardColor: .teal) {
+                        Challenges()
                     }
                 }
+            }
+            .padding(16)
         }
-        .padding(16)
     }
 }
 
@@ -37,40 +42,40 @@ struct Welcome: View {
     
     var body: some View {
         GeometryReader { geometry in
-        VStack {
-            Text("Get Outhere")
-                .textCase(.uppercase)
-                .opacity(0.8)
-                .kerning(7)
-                .font(.title3)
-                .bold()
-                .padding(.bottom,16)
-            
-            HStack {
-                Spacer()
-                Text(store.greeting())
-                    .font(.title2)
+            VStack {
+                Text("Get Outhere")
+                    .textCase(.uppercase)
                     .opacity(0.8)
-                
-                Text("\(firstName).")
-                    .font(.largeTitle)
-                    .foregroundStyle(.green)
+                    .kerning(7)
+                    .font(.title3)
                     .bold()
-                Spacer()
+                    .padding(.bottom,16)
+                
+                HStack {
+                    Spacer()
+                    Text(store.greeting())
+                        .font(.title2)
+                        .opacity(0.8)
+                    
+                    Text("\(firstName.capitalized).")
+                        .font(.largeTitle)
+                        .foregroundStyle(.green)
+                        .bold()
+                    Spacer()
+                }
+                
+                Text(store.currentDate())
+                    .textCase(.uppercase)
+                    .font(.caption)
+                
+                    .kerning(2)
             }
-            
-            Text(store.currentDate())
-                .textCase(.uppercase)
-                .font(.caption)
-
-                .kerning(2)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.gray.opacity(0.08))
+            )
         }
-        .frame(width: geometry.size.width, height: geometry.size.height)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color.gray.opacity(0.08))
-        )
-    }
     }
 }
 
@@ -78,61 +83,17 @@ struct MissionDashboard: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
-        NavigationLink(destination: MissionsControlle(store: _store)) {
+        NavigationLink(destination: MissionsControle(store: _store)) {
             GeometryReader { geometry in
                 HStack {
-                    VStack {
-                        Image(systemName: "flag.pattern.checkered")
-                            .foregroundStyle(.white)
-                            .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-                            .opacity(0.8)
-                            .font(.title)
-                        Text("03")
-                            .font(.system(size: 50))
-                            .foregroundStyle(.green)
-                            .bold()
-                        Text("Completed")
-                            .foregroundStyle(.white)
-                            .textCase(.uppercase)
-                            .font(.caption)
-                            .kerning(2)
-                    }
+                    item(icon: "flag.pattern.checkered", value: 0, label: "Completed", color: .green)
+                    
+                    Spacer()
+                    item(icon: "star", value: 0, label: "Points", color: .green)
                     
                     Spacer()
                     
-                    VStack {
-                        Image(systemName: "star")
-                            .foregroundStyle(.white)
-                            .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-                            .opacity(0.8)
-                            .font(.title)
-                        Text("113")
-                            .font(.system(size: 50))
-                            .foregroundStyle(.green)
-                            .bold()
-                        Text("Points")
-                            .foregroundStyle(.white)
-                            .textCase(.uppercase)
-                            .font(.caption)
-                            .kerning(2)
-                    }
-                    Spacer()
-                    VStack {
-                        Image(systemName: "flame")
-                            .foregroundStyle(.white)
-                            .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-                            .opacity(0.8)
-                            .font(.title)
-                        Text("7")
-                            .font(.system(size: 50))
-                            .foregroundStyle(.green)
-                            .bold()
-                        Text("Streak")
-                            .foregroundStyle(.white)
-                            .textCase(.uppercase)
-                            .font(.caption)
-                            .kerning(2)
-                    }
+                    item(icon: "flame", value: 0, label: "Streak", color: .green)
                 }
                 .padding(.horizontal,16)
                 .frame(width: geometry.size.width, height: geometry.size.height)
@@ -143,22 +104,41 @@ struct MissionDashboard: View {
             }
         }
     }
+    @ViewBuilder
+    private func item(icon: String, value: Int, label: String, color: Color) -> some View {
+        VStack {
+            Image(systemName: icon)
+                .foregroundStyle(.white)
+                .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
+                .opacity(0.8)
+                .font(.title)
+            Text(String(value))
+                .font(.system(size: 50))
+                .foregroundStyle(color)
+                .bold()
+            Text(label)
+                .foregroundStyle(.white)
+                .textCase(.uppercase)
+                .font(.caption)
+                .kerning(2)
+        }
+    }
 }
 
 struct MyMood: View {
     @Environment(GetOuthereStore.self) var store
+    var color: Color
     
     var body: some View {
         NavigationLink(destination: MoodPicker(store: _store)) {
             GeometryReader { geometry in
                 VStack(spacing: 24) {
-                    Text(store.selectedMood?.emoji ?? "👀")
+                    Text(store.selectedMood?.emoji ?? "🌻")
                         .font(.largeTitle)
                     
-                    Text(store.selectedMood?.rawValue ?? "Waiting")
+                    Text(store.selectedMood?.rawValue.capitalized ?? "Mood")
                         .bold()
-                        .foregroundStyle(.yellow)
-                        .textCase(.uppercase)
+                        .foregroundStyle(color)
                         .font(.title)
                     
                     Text("Mood")
@@ -171,7 +151,7 @@ struct MyMood: View {
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.yellow.opacity(0.1))
+                        .fill(color.opacity(0.1))
                     
                 )
             }
@@ -221,46 +201,25 @@ struct MyMission: View {
     }
 }
 
-struct ProfileView: View {
-    @Environment(GetOuthereStore.self) var store
-    var body: some View {
-        NavigationLink(destination: Profile()) {
-            GeometryReader { geometry in
-                VStack(spacing: 24) {
-                    Image(systemName: "person")
-                        .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-                        .foregroundStyle(.white)
-                        .opacity(0.8)
-                        .font(.title)
-                    
-                    Text("Profile")
-                        .foregroundStyle(.red)
-                        .bold()
-                        .font(.title)
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.red.opacity(0.1))
-                )
-            }
-        }
-    }
-}
 
-struct CreateMission: View {
+struct CardsHome<Destination: View>: View {
     @Environment(GetOuthereStore.self) var store
+    var image: String
+    var title: String
+    var cardColor: Color
+    let destination: () -> Destination
+    
     var body: some View {
-        NavigationLink(destination: Challenges()) {
+        NavigationLink(destination: destination) {
             GeometryReader { geometry in
                 VStack(spacing: 24) {
-                    Image(systemName: "hands.and.sparkles")
+                    Image(systemName: image)
                         .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
                         .foregroundStyle(.white)
                         .opacity(0.8)
                         .font(.title)
                     
-                    Text("Challenges")
+                    Text(title)
                         .foregroundStyle(.teal)
                         .bold()
                         .font(.title)
@@ -268,13 +227,9 @@ struct CreateMission: View {
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.teal.opacity(0.1))
+                        .fill(cardColor.opacity(0.1))
                 )
             }
         }
     }
 }
-
-
-
-

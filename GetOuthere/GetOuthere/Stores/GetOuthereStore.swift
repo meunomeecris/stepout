@@ -1,15 +1,17 @@
 import Foundation
+import SwiftUI
 
 @Observable final class GetOuthereStore {
     private let now = Date()
     private let calendar = Calendar.current
     
     var timeRemaining = ""
-    
+    var moodColor: Color = .yellow
     var selectedMood: Mood? = nil
-    var navigateToMissions: Bool = false
     
-    var userName: String = "Cris"
+    var navigateToMissions: Bool = false
+    var navigateToChallenges: Bool = false
+    
     
     func showMission() -> String {
         let mission = MissionData().getMission().text

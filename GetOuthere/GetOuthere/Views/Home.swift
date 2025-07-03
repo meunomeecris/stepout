@@ -17,10 +17,10 @@ struct Home: View {
                 }
                 
                 HStack {
-                    CardsHome(store: _store, image: "person", title: "Profile", cardColor: .red) {
+                    CardsHome(store: _store, image: "person", title: "Profile", color: .red) {
                         Profile()
                     }
-                    CardsHome(store: _store, image: "hands.and.sparkles", title: "Challenges", cardColor: .teal) {
+                    CardsHome(store: _store, image: "hands.and.sparkles", title: "Challenges", color: .teal) {
                         Challenges()
                     }
                 }
@@ -86,14 +86,14 @@ struct MissionDashboard: View {
         NavigationLink(destination: MissionsControle(store: _store)) {
             GeometryReader { geometry in
                 HStack {
-                    item(icon: "flag.pattern.checkered", value: 0, label: "Completed", color: .green)
+                    item(icon: "flag.pattern.checkered", value: 0, label: "Missions\nCompleted", color: .green)
                     
                     Spacer()
-                    item(icon: "star", value: 0, label: "Points", color: .green)
+                    item(icon: "star", value: 0, label: "Missions\nPoints", color: .green)
                     
                     Spacer()
                     
-                    item(icon: "flame", value: 0, label: "Streak", color: .green)
+                    item(icon: "flame", value: 0, label: "Days\nStreak", color: .green)
                 }
                 .padding(.horizontal,16)
                 .frame(width: geometry.size.width, height: geometry.size.height)
@@ -117,7 +117,7 @@ struct MissionDashboard: View {
                 .foregroundStyle(color)
                 .bold()
             Text(label)
-                .foregroundStyle(.white)
+                .foregroundStyle(.white.opacity(0.6))
                 .textCase(.uppercase)
                 .font(.caption)
                 .kerning(2)
@@ -127,23 +127,24 @@ struct MissionDashboard: View {
 
 struct MyMood: View {
     @Environment(GetOuthereStore.self) var store
+    @AppStorage("todaysMood") var todaysMood = "Mood"
+    @AppStorage("emojiMood") var emojiMood = "🌻"
     var color: Color
     
     var body: some View {
         NavigationLink(destination: MoodPicker(store: _store)) {
             GeometryReader { geometry in
                 VStack(spacing: 24) {
-                    Text(store.selectedMood?.emoji ?? "🌻")
+                    Text(emojiMood)
                         .font(.largeTitle)
                     
-                    Text(store.selectedMood?.rawValue.capitalized ?? "Mood")
+                    Text(todaysMood.capitalized)
                         .bold()
                         .foregroundStyle(color)
                         .font(.title)
                     
                     Text("Mood")
-                        .foregroundStyle(.white)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.white.opacity(0.6))
                         .textCase(.uppercase)
                         .font(.caption)
                         .kerning(2)
@@ -185,7 +186,7 @@ struct MyMission: View {
                         }
                     
                     Text("Mission")
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.white.opacity(0.6))
                         .textCase(.uppercase)
                         .font(.caption)
                         .kerning(2)
@@ -206,7 +207,7 @@ struct CardsHome<Destination: View>: View {
     @Environment(GetOuthereStore.self) var store
     var image: String
     var title: String
-    var cardColor: Color
+    var color: Color
     let destination: () -> Destination
     
     var body: some View {
@@ -220,14 +221,14 @@ struct CardsHome<Destination: View>: View {
                         .font(.title)
                     
                     Text(title)
-                        .foregroundStyle(.teal)
+                        .foregroundStyle(color)
                         .bold()
                         .font(.title)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(cardColor.opacity(0.1))
+                        .fill(color.opacity(0.1))
                 )
             }
         }

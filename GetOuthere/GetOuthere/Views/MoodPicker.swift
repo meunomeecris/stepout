@@ -2,7 +2,9 @@ import SwiftUI
 
 struct MoodPicker: View {
     @Environment(GetOuthereStore.self) var store
-    
+    @AppStorage("todaysMood") var todaysMood = "Mood"
+    @AppStorage("emojiMood") var emojiMood = "🌻"
+
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -52,6 +54,9 @@ struct MoodPicker: View {
                         Button {
                             store.selectedMood = mood
                             store.moodColor = mood.color
+                            todaysMood = mood.rawValue
+                            emojiMood = mood.emoji
+                            
                         } label: {
                             VStack(spacing: 0) {
                                 Text(mood.emoji)
@@ -85,7 +90,6 @@ struct MoodPicker: View {
                         RoundedRectangle(cornerRadius: 20)
                             .fill(Color.green.opacity(0.8))
                     )
-                    
                 }
                 
                 Spacer()
@@ -99,6 +103,7 @@ struct MoodPicker: View {
 
 #Preview {
     let store = GetOuthereStore()
+
     MoodPicker()
         .environment(store)
 }

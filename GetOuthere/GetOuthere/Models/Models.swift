@@ -1,7 +1,8 @@
 import Foundation
 import SwiftUI
+import SwiftData
 
-enum Mood: String, CaseIterable, Identifiable {
+enum Mood: String, CaseIterable, Identifiable, Codable {
     case angry, sad, anxious, bored, tired, okay, happy, confidente, motivated
     
     var id: String { rawValue }

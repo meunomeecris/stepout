@@ -1,38 +1,27 @@
 import Foundation
 import SwiftUI
 
-enum Mood: String, CaseIterable, Identifiable, Codable {
-    case angry, sad, anxious, bored, tired, okay, happy, confidente, motivated
-    
-    var id: String { rawValue }
-    
-    var emoji: String {
-        switch self {
-        case .angry: "😡"
-        case .sad: "😢"
-        case .anxious: "😰"
-        case .bored: "😐"
-        case .tired: "😴"
-        case .okay: "🙂"
-        case .happy: "😄"
-        case .confidente: "😏"
-        case .motivated: "😉"
-        }
-    }
+struct Mood: Identifiable, Codable, Hashable {
+    let id: String
+    let emoji: String
+    let colorName: String 
     
     var color: Color {
-        switch self {
-        case .angry: return Color(.red)
-        case .sad: return Color(.blue)
-        case .anxious: return Color(.blue)
-        case .bored: return Color(.gray)
-        case .tired: return Color(.gray)
-        case .okay: return Color(.yellow)
-        case .happy: return Color(.yellow)
-        case .confidente: return Color(.green)
-        case .motivated: return Color(.green)
+        switch colorName {
+        case "red": return .red
+        case "blue": return .blue
+        case "yellow": return .yellow
+        case "green": return .green
+        case "gray": return .gray
+        default: return .indigo
         }
     }
+}
+
+struct DailyMood: Identifiable, Codable {
+    var id = UUID()
+    let mood: Mood
+    let date: Date
 }
 
 struct Mission: Identifiable {

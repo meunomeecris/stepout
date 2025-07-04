@@ -7,7 +7,7 @@ struct MyMood: View {
         NavigationLink(destination: MoodPicker(store: _store)) {
             GeometryReader { geometry in
                 VStack(spacing: 16) {
-                    if let mood = store.selectedMood {
+                    if let mood = store.dailyMood {
                         Text(mood.emoji)
                             .font(.system(size: 48))
                         
@@ -26,7 +26,7 @@ struct MyMood: View {
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(store.selectedMood?.color ?? .yellow)
+                        .fill(store.dailyMood?.color ?? .yellow)
                         .opacity(0.1)
                 )
             }

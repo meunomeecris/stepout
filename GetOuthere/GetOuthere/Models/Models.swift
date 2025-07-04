@@ -24,9 +24,9 @@ struct DailyMood: Identifiable, Codable {
     let date: Date
 }
 
-struct Mission: Identifiable {
-    let id = UUID()
+struct Mission: Identifiable, Codable {
+    var id = UUID()
     let text: String
     let points: Int
-    let mood: Mood
+    let moodID: String
 }

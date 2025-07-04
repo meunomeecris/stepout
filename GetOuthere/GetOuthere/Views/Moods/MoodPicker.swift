@@ -17,7 +17,7 @@ struct MoodPicker: View {
                 ButtonNavToMission(store: _store)
             }
             .navigationDestination(isPresented: $bStore.navigateToMissions) {
-                //                Missions()
+                MissionsView(store: _store)
             }
         }
     }
@@ -42,7 +42,7 @@ struct TitleMood: View {
                 .bold()
                 .padding(.top, 24)
             
-            if let mood = store.selectedMood {
+            if let mood = store.dailyMood {
                 Text(mood.id)
                     .font(.headline)
                     .bold()
@@ -86,7 +86,7 @@ struct AllMoods: View {
                         Text(mood.emoji)
                             .font(.system(size: 40))
                             .padding()
-                            .background(store.selectedMood == mood ? mood.color.opacity(0.3) : Color.clear)
+                            .background(store.dailyMood == mood ? mood.color.opacity(0.3) : Color.clear)
                             .clipShape(Circle())
                         Text(mood.id)
                             .foregroundStyle(.white)
@@ -105,10 +105,10 @@ struct ButtonNavToMission: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
-        if store.selectedMood != nil {
+        if store.dailyMood != nil {
             Button("Get my mission") {
+                store.getAndSaveMission()
                 store.navigateToMissions = true
-                //                        store.showMission()
             }
             .foregroundStyle(.white)
             .bold()

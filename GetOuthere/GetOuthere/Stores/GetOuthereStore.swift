@@ -1,29 +1,22 @@
 import Foundation
+import SwiftData
 import SwiftUI
 
 @Observable final class GetOuthereStore {
     private let now = Date()
     private let calendar = Calendar.current
     
-    var timeRemaining = ""
-    var moodColor: Color = .yellow
+    /// MoodPicker
     var selectedMood: Mood? = nil
-    
     var navigateToMissions: Bool = false
-    var navigateToChallenges: Bool = false
     
+    ///Mood Picker
+    let today = Calendar.current.startOfDay(for: Date())
     
-    func showMission() -> String {
-        let mission = MissionData().getMission().text
-        return mission
-    }
-    
-    func currentDate() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        return formatter.string(from: now)
-    }
-    
+    /// Mission
+    var timeRemaining = ""
+
+    /// Home
     func greeting() -> String {
         let hour = calendar.component(.hour, from: now)
         switch hour {
@@ -34,6 +27,13 @@ import SwiftUI
         }
     }
     
+    func currentDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter.string(from: now)
+    }
+    
+    /// Home - Mission
     func timeRemainingForMissionEnds() {
         guard let midnight = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: now.addingTimeInterval(86400)) else {
             timeRemaining = "Error"
@@ -48,4 +48,13 @@ import SwiftUI
         timeRemaining = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
         
     }
+    
+//    /// Missions
+//    func showMission() -> Mission {
+////        let mission = MissionData().getMission(for: <#Mood#>).text
+////        return mission
+//        
+//        Mission
+//        
+//    }
 }

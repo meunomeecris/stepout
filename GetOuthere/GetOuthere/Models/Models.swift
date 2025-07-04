@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-enum Mood: String, CaseIterable, Identifiable {
+enum Mood: String, CaseIterable, Identifiable, Codable {
     case angry, sad, anxious, bored, tired, okay, happy, confidente, motivated
     
     var id: String { rawValue }
@@ -35,9 +35,9 @@ enum Mood: String, CaseIterable, Identifiable {
     }
 }
 
-
 struct Mission: Identifiable {
     let id = UUID()
-    let text:  String
-//    let mood: Mood
+    let text: String
+    let points: Int
+    let mood: Mood
 }

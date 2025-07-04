@@ -2,28 +2,14 @@ import SwiftUI
 
 struct Home: View {
     @Environment(GetOuthereStore.self) var store
-    var moodColorBg = Color(.blue)
     
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
                 Welcome(store: _store)
-                
                 MissionDashboard(store: _store)
-                
-                HStack {
-                    MyMood(store: _store, color: store.moodColor)
-                    MyMission(store: _store)
-                }
-                
-                HStack {
-                    CardsHome(store: _store, image: "person", title: "Profile", cardColor: .red) {
-                        Profile()
-                    }
-                    CardsHome(store: _store, image: "hands.and.sparkles", title: "Challenges", cardColor: .teal) {
-                        Challenges()
-                    }
-                }
+                MyMood(store: _store)
+                MyMission(store: _store)
             }
             .padding(16)
         }
@@ -67,7 +53,6 @@ struct Welcome: View {
                 Text(store.currentDate())
                     .textCase(.uppercase)
                     .font(.caption)
-                
                     .kerning(2)
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
@@ -79,157 +64,11 @@ struct Welcome: View {
     }
 }
 
-struct MissionDashboard: View {
-    @Environment(GetOuthereStore.self) var store
-    
-    var body: some View {
-        NavigationLink(destination: MissionsControle(store: _store)) {
-            GeometryReader { geometry in
-                HStack {
-                    item(icon: "flag.pattern.checkered", value: 0, label: "Completed", color: .green)
-                    
-                    Spacer()
-                    item(icon: "star", value: 0, label: "Points", color: .green)
-                    
-                    Spacer()
-                    
-                    item(icon: "flame", value: 0, label: "Streak", color: .green)
-                }
-                .padding(.horizontal,16)
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.green.opacity(0.1))
-                )
-            }
-        }
-    }
-    @ViewBuilder
-    private func item(icon: String, value: Int, label: String, color: Color) -> some View {
-        VStack {
-            Image(systemName: icon)
-                .foregroundStyle(.white)
-                .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-                .opacity(0.8)
-                .font(.title)
-            Text(String(value))
-                .font(.system(size: 50))
-                .foregroundStyle(color)
-                .bold()
-            Text(label)
-                .foregroundStyle(.white)
-                .textCase(.uppercase)
-                .font(.caption)
-                .kerning(2)
-        }
-    }
-}
-
-struct MyMood: View {
-    @Environment(GetOuthereStore.self) var store
-    var color: Color
-    
-    var body: some View {
-        NavigationLink(destination: MoodPicker(store: _store)) {
-            GeometryReader { geometry in
-                VStack(spacing: 24) {
-                    Text(store.selectedMood?.emoji ?? "🌻")
-                        .font(.largeTitle)
-                    
-                    Text(store.selectedMood?.rawValue.capitalized ?? "Mood")
-                        .bold()
-                        .foregroundStyle(color)
-                        .font(.title)
-                    
-                    Text("Mood")
-                        .foregroundStyle(.white)
-                        .foregroundStyle(.white)
-                        .textCase(.uppercase)
-                        .font(.caption)
-                        .kerning(2)
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(color.opacity(0.1))
-                    
-                )
-            }
-        }
-    }
-}
-
-struct MyMission: View {
-    @Environment(GetOuthereStore.self) var store
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    var body: some View {
-        NavigationLink(destination: Missions(store: _store)) {
-            GeometryReader { geometry in
-                VStack(spacing: 24) {
-                    Image(systemName: "medal.star")
-                        .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-                        .foregroundStyle(.white)
-                        .opacity(0.8)
-                        .font(.title)
-                    
-                    Text(store.timeRemaining)
-                        .foregroundStyle(.purple)
-                        .bold()
-                        .font(.title)
-                        .onAppear {
-                            store.timeRemainingForMissionEnds()
-                        }
-                        .onReceive(timer) { _ in
-                            store.timeRemainingForMissionEnds()
-                        }
-                    
-                    Text("Mission")
-                        .foregroundStyle(.white)
-                        .textCase(.uppercase)
-                        .font(.caption)
-                        .kerning(2)
-                    
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.purple.opacity(0.1))
-                )
-            }
-        }
-    }
-}
 
 
-struct CardsHome<Destination: View>: View {
-    @Environment(GetOuthereStore.self) var store
-    var image: String
-    var title: String
-    var cardColor: Color
-    let destination: () -> Destination
-    
-    var body: some View {
-        NavigationLink(destination: destination) {
-            GeometryReader { geometry in
-                VStack(spacing: 24) {
-                    Image(systemName: image)
-                        .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-                        .foregroundStyle(.white)
-                        .opacity(0.8)
-                        .font(.title)
-                    
-                    Text(title)
-                        .foregroundStyle(.teal)
-                        .bold()
-                        .font(.title)
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(cardColor.opacity(0.1))
-                )
-            }
-        }
-    }
-}
+
+
+
+
+
+

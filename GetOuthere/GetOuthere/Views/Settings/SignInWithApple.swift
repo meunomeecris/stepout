@@ -3,8 +3,6 @@ import AuthenticationServices
 
 struct SignInWithApple: View {
     @Environment(\.colorScheme) var colorScheme
-    @AppStorage("email") var email = ""
-    @AppStorage("firstName") var firstName = ""
     @AppStorage("userIdentifier") var userIdentifier = ""
     @AppStorage("isSignedIn") var isSignedIn = false
     
@@ -51,17 +49,8 @@ struct SignInWithApple: View {
         guard let credential = result.credential as? ASAuthorizationAppleIDCredential else { return }
         
         let userIdentifier = credential.user
-        
-        let email = credential.email
-        let firstName = credential.fullName?.givenName
-        
         print("User Identifier: \(userIdentifier)")
-        print("Email: \(String(describing: email))")
-        print("First Name: \(String(describing: firstName))")
-        
         self.userIdentifier = userIdentifier
-        self.email = email ?? "getouthere@gmail.com"
-        self.firstName = firstName ?? "Dude"
     }
 
 }

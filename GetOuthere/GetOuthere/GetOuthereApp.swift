@@ -6,7 +6,7 @@ struct GetOuthereApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Root()
                 .environment(store)
         }
     }

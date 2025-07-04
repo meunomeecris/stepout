@@ -2,7 +2,10 @@ import SwiftUI
 
 struct MoodPicker: View {
     @Environment(GetOuthereStore.self) var store
-    
+    @Environment(\.modelContext) var context
+    @AppStorage("todaysMood") var todaysMood = "Mood"
+    @AppStorage("startedMission") var startedMission =  false
+
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -51,7 +54,8 @@ struct MoodPicker: View {
                     ForEach(Mood.allCases) { mood in
                         Button {
                             store.selectedMood = mood
-                            store.moodColor = mood.color
+                            todaysMood = mood.rawValue
+                            
                         } label: {
                             VStack(spacing: 0) {
                                 Text(mood.emoji)
@@ -72,10 +76,12 @@ struct MoodPicker: View {
                 
                 Spacer()
                 
-                if store.selectedMood != nil {
+                if store.selectedMood != nil && startedMission == false {
                     Button("Get my mission") {
                         store.navigateToMissions = true
-                        store.showMission()
+//                        store.showMission()
+                        startedMission = true
+            
                     }
                     .foregroundStyle(.white)
                     .bold()
@@ -85,7 +91,6 @@ struct MoodPicker: View {
                         RoundedRectangle(cornerRadius: 20)
                             .fill(Color.green.opacity(0.8))
                     )
-                    
                 }
                 
                 Spacer()
@@ -99,6 +104,7 @@ struct MoodPicker: View {
 
 #Preview {
     let store = GetOuthereStore()
+
     MoodPicker()
         .environment(store)
 }

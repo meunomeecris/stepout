@@ -13,7 +13,7 @@ struct MissionsView: View {
             
             VStack {
                 Text(store.dailyMission?.text ?? "Just Get Outhere!")
-                    .foregroundStyle(.green)
+                    .foregroundStyle(store.dailyMood?.color ?? .yellow)
                     .font(.title2)
                     .multilineTextAlignment(.center)
                     .padding(40)
@@ -22,27 +22,62 @@ struct MissionsView: View {
                 Divider()
                     .foregroundStyle(.green)
                 
-                VStack {
-                    Text("\(store.dailyMission?.points ?? 3)")
-                        .font(.title)
-                        .foregroundStyle(.green)
-                         Text("Points")
-                        .foregroundStyle(.green)
-                        .textCase(.uppercase)
-                        .font(.caption)
-                        .kerning(2)
+                HStack {
+                    Spacer()
+                    HStack {
+                        Text(store.dailyMood?.emoji ?? "🌻")
+                        Text(store.dailyMission?.moodID.capitalized ?? "Mood")
+                            .font(.title3)
+                            .foregroundStyle(store.dailyMood?.color ?? .yellow)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(store.dailyMood?.color ?? .yellow)
+                            .opacity(0.1)
+                    )
+                    Spacer()
+                    HStack {
+                        Text("\(store.dailyMission?.points ?? 3)")
+                            .font(.title3)
+                            .foregroundStyle(store.dailyMood?.color ?? .yellow)
+                        Text("Points")
+                            .font(.caption)
+                            .textCase(.uppercase)
+                            .kerning(2)
+                            .foregroundStyle(store.dailyMood?.color ?? .yellow)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(store.dailyMood?.color ?? .yellow)
+                            .opacity(0.1)
+                    )
+                    Spacer()
                 }
+                .padding()
             }
-            .padding(24)
-            .foregroundStyle(.green)
+            .padding(16)
             .background(
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(.green)
+                    .fill(store.dailyMood?.color ?? .yellow)
                     .opacity(0.1)
             )
             
             Spacer()
-            
+        }
+        .padding(16)
+    }
+}
+
+#Preview {
+    let store = GetOuthereStore()
+    MissionsView()
+        .environment(store)
+}
+
 //            Button("I did it!") {
 //                //action
 //            }
@@ -54,13 +89,7 @@ struct MissionsView: View {
 //                    .fill(.green)
 //            )
 //            .opacity(0.8)
-        }
-        .padding()
-    }
-}
 
-#Preview {
-    let store = GetOuthereStore()
-    MissionsView()
-        .environment(store)
-}
+
+//                HStack(spacing: 32) {
+

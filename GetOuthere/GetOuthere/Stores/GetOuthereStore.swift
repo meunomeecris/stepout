@@ -27,6 +27,8 @@ import SwiftUI
         case 0..<6: return "Good Night,"
         case 6..<12: return "Good Morning,"
         case 12..<18: return "Good Afternoon,"
+        case 18..<20: return "Good Evening,"
+        case 20..<34: return "Good Night,"
         default: return "Nice day,"
         }
     }

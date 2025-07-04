@@ -9,11 +9,12 @@ struct Home: View {
                 Welcome(store: _store)
 //                MissionDashboard(store: _store)
                 MyMood(store: _store)
-//                MyMission(store: _store)
+                MyMission(store: _store)
             }
             .padding(16)
             .onAppear {
                 store.loadedDailyMood()
+                store.loadDailyMission()
             }
         }
     }
@@ -27,7 +28,6 @@ struct Home: View {
 
 struct Welcome: View {
     @Environment(GetOuthereStore.self) var store
-    @AppStorage("firstName") var firstName = "Human"
     
     var body: some View {
         GeometryReader { geometry in
@@ -46,7 +46,7 @@ struct Welcome: View {
                         .font(.title2)
                         .opacity(0.8)
                     
-                    Text("\(firstName.capitalized).")
+                    Text("\(store.username.capitalized).")
                         .font(.largeTitle)
                         .foregroundStyle(.green)
                         .bold()

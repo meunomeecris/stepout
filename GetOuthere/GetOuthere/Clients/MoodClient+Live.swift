@@ -10,28 +10,19 @@ struct MoodClientLive: MoodClient {
     }
     
     func loadMood() -> DailyMood {
-        
         let calendar = Calendar.current
         let now = Date()
-        
         
         if let data = UserDefaults.standard.data(forKey: userDefaultKey),
            let savedMoods = try? JSONDecoder().decode(DailyMood.self, from: data) {
             if calendar.isDate(savedMoods.date, inSameDayAs: now) {
-                print("Same day detected, loading from savedMoods")
                 return savedMoods
-            } else {
-                print("New day detected, resetting mood.")
-                return cleanMood()
             }
         }
         
         print("No saved mood found, resetting mood.")
-        return cleanMood()
-    }
-    
-    func cleanMood() -> DailyMood {
         return DailyMood(mood: Mood.init(id: "Mood", emoji: "🌻", colorName: "yellow"), date: Date())
     }
+
 }
 

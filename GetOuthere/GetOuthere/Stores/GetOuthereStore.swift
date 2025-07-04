@@ -3,14 +3,20 @@ import SwiftUI
 
 @Observable final class GetOuthereStore {
     private let moodClient = MoodClientLive()
+    private let missionClient = MissionClientLive()
+    
+    // Home's Data
+    var username = "Human"
     
     // Mood's Data
     let moodData: [Mood] = Mood.allMoods
-    var selectedMood: Mood? = nil
+    var dailyMood: Mood? = nil
     var navigateToMissions: Bool = false
-    let today = Calendar.current.startOfDay(for: Date())
     
     // Mission's Data
+    let missionData: [Mission] = Mission.allMissions
+    var dailyMission: Mission? = nil
+    var missionCompleted = false
     var timeRemaining = ""
     
     //MARK: - App's Logic
@@ -22,6 +28,8 @@ import SwiftUI
         case 0..<6: return "Good Night,"
         case 6..<12: return "Good Morning,"
         case 12..<18: return "Good Afternoon,"
+        case 18..<20: return "Good Evening,"
+        case 20..<34: return "Good Night,"
         default: return "Nice day,"
         }
     }
@@ -34,22 +42,18 @@ import SwiftUI
     
     // Mood
     func createdDailyMood(_ mood: Mood) -> DailyMood {
-        return DailyMood(mood: mood, date: today)
+        return DailyMood(mood: mood, date: Calendar.current.startOfDay(for: Date()))
     }
     
     func savedDailyMood(_ mood: Mood) {
-        selectedMood = mood
+        dailyMood = mood
         let dailyMood = createdDailyMood(mood)
         moodClient.saveMood(dailyMood)
     }
     
     func loadedDailyMood() {
         let mood = moodClient.loadMood().mood
-        selectedMood = mood
-    }
-    
-    func cleanDailyMood() {
-        
+        dailyMood = mood
     }
     
     // Mission
@@ -66,5 +70,25 @@ import SwiftUI
         
         timeRemaining = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
         
+    }
+    
+    private func getMission()  {
+        if let dailyMood  {
+            let filtered = missionData.filter { $0.moodID == dailyMood.id }
+            dailyMission = filtered.randomElement()
+        }
+    }
+    
+    
+    func getAndSaveMission() {
+        getMission()
+        if let dailyMission  {
+            missionClient.saveMission(dailyMission)
+        }
+    }
+    
+    func loadDailyMission() {
+        let mission = missionClient.loadMission()
+        dailyMission = mission
     }
 }

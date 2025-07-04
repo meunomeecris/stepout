@@ -7,11 +7,14 @@ struct Home: View {
         NavigationStack {
             VStack(spacing: 16) {
                 Welcome(store: _store)
-                MissionDashboard(store: _store)
+//                MissionDashboard(store: _store)
                 MyMood(store: _store)
-                MyMission(store: _store)
+//                MyMission(store: _store)
             }
             .padding(16)
+            .onAppear {
+                store.loadedDailyMood()
+            }
         }
     }
 }
@@ -24,7 +27,7 @@ struct Home: View {
 
 struct Welcome: View {
     @Environment(GetOuthereStore.self) var store
-    @AppStorage("firstName") var firstName = ""
+    @AppStorage("firstName") var firstName = "Human"
     
     var body: some View {
         GeometryReader { geometry in

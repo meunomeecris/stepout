@@ -37,5 +37,7 @@ enum Mood: String, CaseIterable, Identifiable, Codable {
 
 struct Mission: Identifiable {
     let id = UUID()
-    let text:  String
+    let text: String
+    let points: Int
+    let mood: Mood
 }

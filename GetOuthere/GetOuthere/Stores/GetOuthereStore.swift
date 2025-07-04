@@ -49,9 +49,12 @@ import SwiftUI
         
     }
     
-    /// Missions
-    func showMission() -> String {
-        let mission = MissionData().getMission().text
-        return mission
-    }
+//    /// Missions
+//    func showMission() -> Mission {
+////        let mission = MissionData().getMission(for: <#Mood#>).text
+////        return mission
+//        
+//        Mission
+//        
+//    }
 }

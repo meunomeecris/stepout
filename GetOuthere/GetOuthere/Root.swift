@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
+struct Root: View {
     @Environment(GetOuthereStore.self) var store
     @AppStorage("isSignedIn") var isSignedIn: Bool = false
     
@@ -16,5 +16,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    Root()
 }

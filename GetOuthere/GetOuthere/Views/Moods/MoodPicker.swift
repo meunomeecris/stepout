@@ -4,6 +4,7 @@ struct MoodPicker: View {
     @Environment(GetOuthereStore.self) var store
     @Environment(\.modelContext) var context
     @AppStorage("todaysMood") var todaysMood = "Mood"
+    @AppStorage("startedMission") var startedMission =  false
 
     let columns = [
         GridItem(.flexible()),
@@ -75,11 +76,12 @@ struct MoodPicker: View {
                 
                 Spacer()
                 
-                if store.selectedMood != nil {
+                if store.selectedMood != nil && startedMission == false {
                     Button("Get my mission") {
                         store.navigateToMissions = true
-                        store.showMission()
-                        
+//                        store.showMission()
+                        startedMission = true
+            
                     }
                     .foregroundStyle(.white)
                     .bold()

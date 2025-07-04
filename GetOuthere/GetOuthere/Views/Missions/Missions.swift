@@ -2,6 +2,7 @@ import SwiftUI
 
 struct Missions: View {
     @Environment(GetOuthereStore.self) var store
+    @AppStorage("todaysMood") var todaysMood = "Mood"
     
     var body: some View {
         VStack(spacing: 24) {
@@ -12,7 +13,8 @@ struct Missions: View {
                 .padding(.top, 24)
             
             VStack {
-                Text(store.showMission().description)
+                Text(MissionData.shared.getMission(for: .bored).text)
+                    .foregroundStyle(Mood(rawValue: todaysMood)?.color ?? .yellow)
                     .font(.title2)
                     .multilineTextAlignment(.center)
                     .padding(40)
@@ -21,24 +23,23 @@ struct Missions: View {
                 Divider()
                     .foregroundStyle(.green)
                 
-                HStack {
-                    Image(systemName: "medal.star")
-                        .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-                        .font(.title)
-                    Text("113")
-                        .font(.title)
-                        .foregroundStyle(.green)
+                   VStack {
+                        Text(String(MissionData.shared.getMission(for: .angry).points))
+                            .font(.title)
+                            .foregroundStyle(Mood(rawValue: todaysMood)?.color ?? .yellow)
+                        Text("Points")
+                           .foregroundStyle(Mood(rawValue: todaysMood)?.color ?? .yellow)
+                            .textCase(.uppercase)
+                            .font(.caption)
+                            .kerning(2)
                 }
-                Text("Points")
-                    .textCase(.uppercase)
-                    .font(.caption)
-                    .kerning(2)
             }
             .padding(24)
                 .foregroundStyle(.green)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.green.opacity(0.1))
+                        .fill(Mood(rawValue: todaysMood)?.color ?? .yellow)
+                        .opacity(0.1)
                 )
             
             Spacer()
@@ -51,7 +52,7 @@ struct Missions: View {
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.green)
+                    .fill(Mood(rawValue: todaysMood)?.color ?? .yellow)
             )
             .opacity(0.8)
         }

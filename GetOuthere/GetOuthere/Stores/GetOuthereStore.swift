@@ -16,6 +16,7 @@ import SwiftUI
     // Mission's Data
     let missionData: [Mission] = Mission.allMissions
     var dailyMission: Mission? = nil
+    var missionCompleted = false
     var timeRemaining = ""
     
     //MARK: - App's Logic
@@ -54,7 +55,6 @@ import SwiftUI
         let mood = moodClient.loadMood().mood
         dailyMood = mood
     }
-
     
     // Mission
     func timeRemainingForMissionEnds() {
@@ -78,6 +78,7 @@ import SwiftUI
             dailyMission = filtered.randomElement()
         }
     }
+    
     
     func getAndSaveMission() {
         getMission()

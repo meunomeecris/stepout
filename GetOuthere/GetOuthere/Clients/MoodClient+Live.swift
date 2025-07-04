@@ -17,9 +17,6 @@ struct MoodClientLive: MoodClient {
            let savedMoods = try? JSONDecoder().decode(DailyMood.self, from: data) {
             if calendar.isDate(savedMoods.date, inSameDayAs: now) {
                 return savedMoods
-            } else {
-                print("New day detected, resetting mood.")
-                return DailyMood(mood: Mood.init(id: "Mood", emoji: "🌻", colorName: "yellow"), date: Date())
             }
         }
         

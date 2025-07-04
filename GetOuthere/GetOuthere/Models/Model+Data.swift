@@ -91,7 +91,9 @@ extension Mission {
                     Mission(
                         text: text,
                         points: Int.random(in: 5...15),
-                        moodID: moodID
+                        moodID: moodID,
+                        completed: false,
+                        date: Calendar.current.startOfDay(for: Date())
                     )
                 )
             }

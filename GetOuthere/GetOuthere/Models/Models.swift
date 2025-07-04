@@ -29,4 +29,6 @@ struct Mission: Identifiable, Codable {
     let text: String
     let points: Int
     let moodID: String
+    var completed: Bool
+    var date: Date
 }

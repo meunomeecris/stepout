@@ -8,7 +8,6 @@ import SwiftUI
     
     /// MoodPicker
     var selectedMood: Mood? = nil
-    var moodColor: Color = .yellow
     var navigateToMissions: Bool = false
     
     ///Mood Picker

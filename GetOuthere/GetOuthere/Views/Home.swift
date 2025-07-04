@@ -2,28 +2,26 @@ import SwiftUI
 
 struct Home: View {
     @Environment(GetOuthereStore.self) var store
-    var moodColorBg = Color(.blue)
     
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
                 Welcome(store: _store)
-                
                 MissionDashboard(store: _store)
+                MyMood(store: _store)
+                MyMission(store: _store)
                 
-                HStack {
-                    MyMood(store: _store, color: store.moodColor)
-                    MyMission(store: _store)
-                }
+//                HStack {
+//                }
                 
-                HStack {
-                    CardsHome(store: _store, image: "person", title: "Profile", color: .red) {
-                        Profile()
-                    }
-                    CardsHome(store: _store, image: "hands.and.sparkles", title: "Challenges", color: .teal) {
-                        Challenges()
-                    }
-                }
+//                HStack {
+//                    CardsHome(store: _store, image: "person", title: "Profile", color: .red) {
+//                        Profile()
+//                    }
+//                    CardsHome(store: _store, image: "hands.and.sparkles", title: "Challenges", color: .teal) {
+//                        Challenges()
+//                    }
+//                }
             }
             .padding(16)
         }
@@ -128,33 +126,32 @@ struct MissionDashboard: View {
 struct MyMood: View {
     @Environment(GetOuthereStore.self) var store
     @AppStorage("todaysMood") var todaysMood = "Mood"
-    @AppStorage("emojiMood") var emojiMood = "🌻"
-    var color: Color
     
     var body: some View {
         NavigationLink(destination: MoodPicker(store: _store)) {
-            GeometryReader { geometry in
-                VStack(spacing: 24) {
-                    Text(emojiMood)
-                        .font(.largeTitle)
-                    
-                    Text(todaysMood.capitalized)
-                        .bold()
-                        .foregroundStyle(color)
-                        .font(.title)
-                    
-                    Text("Mood")
-                        .foregroundStyle(.white.opacity(0.6))
-                        .textCase(.uppercase)
-                        .font(.caption)
-                        .kerning(2)
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(color.opacity(0.1))
-                    
-                )
+                GeometryReader { geometry in
+                    VStack(spacing: 24) {
+                            Text(Mood(rawValue: todaysMood)?.emoji ?? "🌻")
+                                .font(.largeTitle)
+                            
+                        Text(Mood(rawValue: todaysMood)?.rawValue.capitalized ?? "Mood")
+                                .bold()
+                                .foregroundStyle(Mood(rawValue: todaysMood)?.color ?? .yellow)
+                                .font(.title)
+                            
+                            Text("Mood")
+                                .foregroundStyle(.white.opacity(0.6))
+                                .textCase(.uppercase)
+                                .font(.caption)
+                                .kerning(2)
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Mood(rawValue: todaysMood)?.color ?? .yellow)
+                            .opacity(0.1)
+                    )
+                
             }
         }
     }

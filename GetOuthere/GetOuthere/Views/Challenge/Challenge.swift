@@ -1,31 +1,27 @@
 import SwiftUI
 
-struct CardsHome<Destination: View>: View {
+struct Challenge: View {
     @Environment(GetOuthereStore.self) var store
-    var image: String
-    var title: String
-    var color: Color
-    let destination: () -> Destination
 
     var body: some View {
-        NavigationLink(destination: destination) {
+        NavigationLink(destination: ChallengeView()) {
             GeometryReader { geometry in
                 VStack(spacing: 24) {
-                    Image(systemName: image)
-                        .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
+                    Image(systemName: "hands.and.sparkles")
+                        .symbolEffect(.bounce.up.byLayer, options: .nonRepeating)
                         .foregroundStyle(.white)
                         .opacity(0.8)
                         .font(.title)
 
-                    Text(title)
-                        .foregroundStyle(color)
+                    Text("Challenge")
+                        .foregroundStyle(.indigo)
                         .bold()
                         .font(.title)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(color.opacity(0.1))
+                        .fill(.indigo.opacity(0.1))
                 )
             }
         }

@@ -23,6 +23,9 @@ struct MoodClientLive: MoodClient {
         print("No saved mood found, resetting mood.")
         return DailyMood(mood: Mood.init(id: "Mood", emoji: "🌻", colorName: "yellow"), date: Date())
     }
-
+    
+    func resetMood() {
+        UserDefaults.standard.removeObject(forKey: userDefaultKey)
+    }
 }
 

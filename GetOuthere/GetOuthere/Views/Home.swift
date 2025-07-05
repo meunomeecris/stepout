@@ -7,14 +7,21 @@ struct Home: View {
         NavigationStack {
             VStack(spacing: 16) {
                 Welcome(store: _store)
-//                MissionDashboard(store: _store)
-                MyMood(store: _store)
-                MyMission(store: _store)
+                TrackerDash(store: _store)
+                HStack {
+                    MyMood(store: _store)
+                    MyMission(store: _store)
+                }
+                HStack {
+                    ProfileView()
+                    Challenge()
+                }
             }
             .padding(16)
             .onAppear {
                 store.loadDailyMood()
                 store.loadDailyMission()
+                store.loadedTracker()
             }
         }
     }

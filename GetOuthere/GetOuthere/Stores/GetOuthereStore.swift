@@ -4,6 +4,8 @@ import SwiftUI
 @Observable final class GetOuthereStore {
     private let moodClient = MoodClientLive()
     private let missionClient = MissionClientLive()
+    private let trackerClient = TrackerClientLive()
+    
     
     // Home's Data
     var username = "Human"
@@ -17,9 +19,11 @@ import SwiftUI
     // Mission's Data
     let missionData: [Mission] = Mission.allMissions
     var dailyMission: Mission? = nil
-    var completedMission = false
     var timeRemaining = ""
     
+    // Tracker's Data
+    var dailyTracker: Tracker = Tracker(completed: 0, point: 0, streak: 0, date: Calendar.current.startOfDay(for: Date()))
+                                            
     //MARK: - App's Logic
     
     // Home
@@ -50,14 +54,11 @@ import SwiftUI
         dailyMood = mood
         let dailyMood = createdDailyMood(mood)
         moodClient.saveMood(dailyMood)
-        
-        print("Save Mood: \(dailyMood)")
     }
     
     func loadDailyMood() {
         let mood = moodClient.loadMood().mood
         dailyMood = mood
-        print("Lad Mood: \(dailyMood)")
     }
     
     // Mission
@@ -73,7 +74,6 @@ import SwiftUI
         let seconds = remainingSeconds % 60
         
         timeRemaining = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-        
     }
     
     func getMission()  {
@@ -81,26 +81,49 @@ import SwiftUI
             let filtered = missionData.filter { $0.moodID == dailyMood.id }
             dailyMission = filtered.randomElement()
         }
-        print("Get Mission: \(dailyMission)")
     }
     
     func savedMission() {
         if let dailyMission  {
             missionClient.saveMission(dailyMission)
         }
-        print("Save Mission: \(dailyMission)")
     }
     
     func loadDailyMission() {
         let mission = missionClient.loadMission()
         dailyMission = mission
-        print("Laod Mission: \(dailyMission)")
     }
     
-    func handleMission() -> Bool {
+    func handleDailyMission() -> Bool {
         guard let mission = dailyMission else {
             return false
         }
         return mission.completed
+    }
+
+    
+    // Tracker
+    func updatedTracker() {
+        dailyTracker.completed += 1
+        dailyTracker.point += dailyMission?.point ?? 0
+        if trackerClient.checkForNewDay() {
+            dailyTracker.streak += 1
+            trackerClient.updateLastTrackDate(Calendar.current.startOfDay(for: Date()))
+        }
+    }
+    
+    
+    func savedTracker(_ tracker: Tracker) {
+        trackerClient.saveTracker(tracker)
+    }
+    
+    func loadedTracker() {
+        dailyTracker = trackerClient.loadTracker()
+    }
+    
+    func resetAllData() {
+        trackerClient.resetTracker()
+        moodClient.resetMood()
+        missionClient.resetMission()
     }
 }

@@ -111,7 +111,7 @@ struct ButtonNavToMission: View {
                 store.getMission()
                 store.navigateToMissions = true
                 store.showGetMissionButton = false
-//                store.completedMission = false
+                store.savedMission()
             }
             .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
             .foregroundStyle(store.dailyMood?.color ?? .green)

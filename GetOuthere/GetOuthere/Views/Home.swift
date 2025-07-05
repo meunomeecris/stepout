@@ -7,7 +7,7 @@ struct Home: View {
         NavigationStack {
             VStack(spacing: 16) {
                 Welcome(store: _store)
-//                MissionDashboard(store: _store)
+                MissionDashboard(store: _store)
                 MyMood(store: _store)
                 MyMission(store: _store)
             }

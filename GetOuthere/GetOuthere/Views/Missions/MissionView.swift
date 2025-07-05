@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MissionsView: View {
+struct MissionView: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
@@ -16,7 +16,7 @@ struct MissionsView: View {
 
 #Preview {
     let store = GetOuthereStore()
-    MissionsView()
+    MissionView()
         .environment(store)
 }
 
@@ -33,19 +33,22 @@ struct TitleMission: View {
 struct ButtonCompletedMission: View {
     @Environment(GetOuthereStore.self) var store
     
+
+
     var body: some View {
-        Button("\(store.missionCompleted ? "Mission accomplished" : "Complet Mission")", systemImage: "flag.pattern.checkered") {
+        Button("\(store.handleMission() ? "Mission accomplished" : "Complet Mission")", systemImage: "flag.pattern.checkered") {
             store.dailyMission?.completed = true
-            store.missionCompleted = ((store.dailyMission?.completed) != nil)
+            store.completedMission = ((store.dailyMission?.completed) != nil)
+            store.savedMission()
         }
         .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-        .foregroundStyle(store.missionCompleted  ?.gray : .green)
+        .foregroundStyle(store.handleMission() ? .gray : store.dailyMood?.color ?? .green )
         .bold()
         .textCase(.uppercase)
         .padding(24)
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(store.missionCompleted ? .gray : .green)
+                .fill(store.handleMission() ? .gray : store.dailyMood?.color ?? .green )
                 .opacity(0.1)
         )
         
@@ -58,14 +61,14 @@ struct CardMission: View {
     var body: some View {
         VStack {
             Text(store.dailyMission?.text ?? "Just Get Outhere!")
-                .foregroundStyle(store.missionCompleted ? .gray : store.dailyMood?.color ?? .yellow)
+                .foregroundStyle(store.handleMission() ? .gray : store.dailyMood?.color ?? .green)
                 .font(.title2)
                 .multilineTextAlignment(.center)
                 .padding(40)
                 .bold()
             
             Divider()
-                .foregroundStyle(.green)
+                .foregroundStyle(store.handleMission() ? .gray : store.dailyMood?.color ?? .green)
             
             HStack {
                 Spacer()
@@ -73,31 +76,31 @@ struct CardMission: View {
                     Text(store.dailyMood?.emoji ?? "🌻")
                     Text(store.dailyMission?.moodID.capitalized ?? "Mood")
                         .font(.title3)
-                        .foregroundStyle(store.missionCompleted ? .gray : store.dailyMood?.color ?? .yellow)
+                        .foregroundStyle(store.handleMission() ? .gray : store.dailyMood?.color ?? .green)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(store.missionCompleted ? .gray : store.dailyMood?.color ?? .yellow)
+                        .fill(store.handleMission() ? .gray : store.dailyMood?.color ?? .green)
                         .opacity(0.1)
                 )
                 Spacer()
                 HStack {
                     Text("\(store.dailyMission?.points ?? 3)")
                         .font(.title2)
-                        .foregroundStyle(store.missionCompleted ? .gray : store.dailyMood?.color ?? .yellow)
+                        .foregroundStyle(store.handleMission() ? .gray : store.dailyMood?.color ?? .green)
                     Text("Points")
                         .font(.caption)
                         .textCase(.uppercase)
                         .kerning(2)
-                        .foregroundStyle(store.missionCompleted ? .gray : store.dailyMood?.color ?? .yellow)
+                        .foregroundStyle(store.handleMission() ? .gray : store.dailyMood?.color ?? .green)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(store.missionCompleted ? .gray : store.dailyMood?.color ?? .yellow)
+                        .fill(store.handleMission() ? .gray : store.dailyMood?.color ?? .green)
                         .opacity(0.1)
                 )
                 Spacer()
@@ -107,7 +110,7 @@ struct CardMission: View {
         .padding(16)
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(store.missionCompleted ? .gray : store.dailyMood?.color ?? .yellow)
+                .fill(store.handleMission() ?.gray : store.dailyMood?.color ?? .green)
                 .opacity(0.1)
         )
     }

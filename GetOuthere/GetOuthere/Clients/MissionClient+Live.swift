@@ -20,7 +20,7 @@ struct MissionClientLive: MissionClient {
             }
         }
         print("No saved mission found, resetting mood.")
-        return Mission(text: "Just Go Outhere and discovery the world!", points: 11, moodID: "okay", completed: false, date: Calendar.current.startOfDay(for: Date()))
+        return Mission(text: "Just Go Outhere and discovery the world!", points: 10, moodID: "okay", completed: false, date: Calendar.current.startOfDay(for: Date()))
     }
     
 }

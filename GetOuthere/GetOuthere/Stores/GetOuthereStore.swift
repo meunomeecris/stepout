@@ -12,12 +12,12 @@ import SwiftUI
     let moodData: [Mood] = Mood.allMoods
     var dailyMood: Mood? = nil
     var navigateToMissions: Bool = false
-    var buttonNavToMissionTapped: Bool = false
+    var showGetMissionButton: Bool = false
     
     // Mission's Data
     let missionData: [Mission] = Mission.allMissions
     var dailyMission: Mission? = nil
-    var missionCompleted = false
+    var completedMission = false
     var timeRemaining = ""
     
     //MARK: - App's Logic
@@ -50,11 +50,14 @@ import SwiftUI
         dailyMood = mood
         let dailyMood = createdDailyMood(mood)
         moodClient.saveMood(dailyMood)
+        
+        print("Save Mood: \(dailyMood)")
     }
     
-    func loadedDailyMood() {
+    func loadDailyMood() {
         let mood = moodClient.loadMood().mood
         dailyMood = mood
+        print("Lad Mood: \(dailyMood)")
     }
     
     // Mission
@@ -73,23 +76,31 @@ import SwiftUI
         
     }
     
-    private func getMission()  {
+    func getMission()  {
         if let dailyMood  {
             let filtered = missionData.filter { $0.moodID == dailyMood.id }
             dailyMission = filtered.randomElement()
         }
+        print("Get Mission: \(dailyMission)")
     }
     
-    
-    func getAndSaveMission() {
-        getMission()
+    func savedMission() {
         if let dailyMission  {
             missionClient.saveMission(dailyMission)
         }
+        print("Save Mission: \(dailyMission)")
     }
     
     func loadDailyMission() {
         let mission = missionClient.loadMission()
         dailyMission = mission
+        print("Laod Mission: \(dailyMission)")
+    }
+    
+    func handleMission() -> Bool {
+        guard let mission = dailyMission else {
+            return false
+        }
+        return mission.completed
     }
 }

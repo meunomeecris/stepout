@@ -33,3 +33,9 @@ struct MyMood: View {
         }
     }
 }
+
+#Preview {
+    let store = GetOuthereStore()
+    MyMood()
+        .environment(store)
+}

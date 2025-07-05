@@ -81,6 +81,7 @@ struct AllMoods: View {
             ForEach(store.moodData) { mood in
                 Button {
                     store.savedDailyMood(mood)
+                    store.buttonNavToMissionTapped = true
                 } label: {
                     VStack(spacing: 0) {
                         Text(mood.emoji)
@@ -105,18 +106,21 @@ struct ButtonNavToMission: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
-        if store.dailyMood != nil {
+        if store.dailyMood != nil && store.buttonNavToMissionTapped {
             Button("Get my mission") {
                 store.getAndSaveMission()
                 store.navigateToMissions = true
+                store.buttonNavToMissionTapped = false
             }
-            .foregroundStyle(.white)
+            .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
+            .foregroundStyle(store.dailyMood?.color ?? .green)
             .bold()
             .textCase(.uppercase)
             .padding(24)
             .background(
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.green.opacity(0.8))
+                    .fill(store.dailyMood?.color ?? .green)
+                    .opacity(0.1)
             )
         }
     }

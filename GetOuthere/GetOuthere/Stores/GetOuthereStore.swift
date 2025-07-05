@@ -12,6 +12,7 @@ import SwiftUI
     let moodData: [Mood] = Mood.allMoods
     var dailyMood: Mood? = nil
     var navigateToMissions: Bool = false
+    var buttonNavToMissionTapped: Bool = false
     
     // Mission's Data
     let missionData: [Mission] = Mission.allMissions

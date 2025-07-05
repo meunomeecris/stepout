@@ -34,7 +34,7 @@ extension Mission {
                 "Go to a cozy bookstore and browse",
                 "Walk by the lake or river for fresh air"
             ],
-            "anxicous": [
+            "anxious": [
                 "Join a gentle group walk in nature",
                 "Sit on a bench and practice deep breathing",
                 "Visit a quiet neighborhood and take photos",

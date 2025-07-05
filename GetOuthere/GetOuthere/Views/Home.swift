@@ -13,7 +13,7 @@ struct Home: View {
             }
             .padding(16)
             .onAppear {
-                store.loadedDailyMood()
+                store.loadDailyMood()
                 store.loadDailyMission()
             }
         }

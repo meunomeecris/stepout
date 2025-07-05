@@ -5,7 +5,7 @@ struct MyMission: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        NavigationLink(destination: MissionsView(store: _store)) {
+        NavigationLink(destination: MissionView(store: _store)) {
             GeometryReader { geometry in
                 VStack(spacing: 24) {
                     Image(systemName: "medal.star")

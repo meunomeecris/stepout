@@ -7,7 +7,7 @@ struct MyMission: View {
     var body: some View {
         NavigationLink(destination: MissionView(store: _store)) {
             GeometryReader { geometry in
-                VStack(spacing: 24) {
+                VStack(spacing: 12) {
                     Image(systemName: "medal.star")
                         .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
                         .foregroundStyle(.white)
@@ -25,7 +25,7 @@ struct MyMission: View {
                             store.timeRemainingForMissionEnds()
                         }
                     
-                    Text("To finish the mission")
+                    Text("To finish\nthe mission")
                         .foregroundStyle(.white.opacity(0.6))
                         .textCase(.uppercase)
                         .font(.caption)

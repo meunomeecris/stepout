@@ -10,9 +10,9 @@ struct Mood: Identifiable, Codable, Hashable {
         switch colorName {
         case "red": return .red
         case "blue": return .blue
+        case "brown": return .brown
         case "yellow": return .yellow
         case "green": return .green
-        case "gray": return .gray
         default: return .indigo
         }
     }
@@ -27,8 +27,15 @@ struct DailyMood: Identifiable, Codable {
 struct Mission: Identifiable, Codable {
     var id = UUID()
     let text: String
-    let points: Int
+    let point: Int
     let moodID: String
     var completed: Bool
+    var date: Date
+}
+
+struct Tracker: Codable {
+    var completed: Int
+    var point: Int
+    var streak: Int
     var date: Date
 }

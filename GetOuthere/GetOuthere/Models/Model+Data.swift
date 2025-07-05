@@ -5,11 +5,11 @@ extension Mood {
            Mood(id: "angry", emoji: "😡", colorName: "red"),
            Mood(id: "sad", emoji: "😢", colorName: "blue"),
            Mood(id: "anxious", emoji: "😰", colorName: "blue"),
-           Mood(id: "bored", emoji: "😐", colorName: "gray"),
-           Mood(id: "tired", emoji: "😴", colorName: "gray"),
+           Mood(id: "bored", emoji: "😐", colorName: "brown"),
+           Mood(id: "tired", emoji: "😴", colorName: "brown"),
            Mood(id: "okay", emoji: "🙂", colorName: "yellow"),
            Mood(id: "happy", emoji: "😄", colorName: "yellow"),
-           Mood(id: "confidente", emoji: "😏", colorName: "green"),
+           Mood(id: "confidant", emoji: "😏", colorName: "green"),
            Mood(id: "motivated", emoji: "😉", colorName: "green")
        ]
 }
@@ -69,7 +69,7 @@ extension Mission {
                 "Attend a live music gig or open mic",
                 "Plan a spontaneous picnic outdoors"
             ],
-            "confidente": [
+            "confidant": [
                 "Walk into a new indie store and chat",
                 "Join a meetup or networking event",
                 "Go wine tasting or cooking class",
@@ -90,7 +90,7 @@ extension Mission {
                 missions.append(
                     Mission(
                         text: text,
-                        points: Int.random(in: 5...15),
+                        point: Int.random(in: 3...15),
                         moodID: moodID,
                         completed: false,
                         date: Calendar.current.startOfDay(for: Date())

@@ -1,20 +1,20 @@
 import SwiftUI
 
-struct MissionDashboard: View {
+struct TrackerDash: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
-        NavigationLink(destination: MissionsControle(store: _store)) {
+//        NavigationLink(destination: TrackerDash(store: _store)) {
             GeometryReader { geometry in
                 HStack {
-                    item(icon: "flag.pattern.checkered", value: 0, label: "Missions\nCompleted", color: .green)
+                    item(icon: "flag.pattern.checkered", value: store.dailyTracker.completed, label: "Completed", color: .green)
                     
                     Spacer()
-                    item(icon: "star", value: 0, label: "Missions\nPoints", color: .green)
+                    item(icon: "star", value: store.dailyTracker.point, label: "Points", color: .green)
                     
                     Spacer()
                     
-                    item(icon: "flame", value: 0, label: "Days\nStreak", color: .green)
+                    item(icon: "flame", value: store.dailyTracker.streak, label: "Streak", color: .green)
                 }
                 .padding(.horizontal,16)
                 .frame(width: geometry.size.width, height: geometry.size.height)
@@ -23,7 +23,7 @@ struct MissionDashboard: View {
                         .fill(Color.green.opacity(0.1))
                 )
             }
-        }
+//        }
     }
     @ViewBuilder
     private func item(icon: String, value: Int, label: String, color: Color) -> some View {
@@ -47,5 +47,5 @@ struct MissionDashboard: View {
 }
 
 #Preview {
-    MissionDashboard()
+    TrackerDash()
 }

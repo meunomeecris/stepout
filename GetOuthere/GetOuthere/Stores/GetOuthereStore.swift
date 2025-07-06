@@ -20,6 +20,7 @@ import SwiftUI
     let missionData: [Mission] = Mission.allMissions
     var dailyMission: Mission? = nil
     var timeRemaining = ""
+    var stopTimeRemaining = false
     
     // Tracker's Data
     var dailyTracker: Tracker = Tracker(completed: 0, point: 0, streak: 0, date: Calendar.current.startOfDay(for: Date()))
@@ -62,9 +63,9 @@ import SwiftUI
     }
     
     // Mission
-    func timeRemainingForMissionEnds() {
+    private func timeRemainingForMissionEnds() {
         guard let midnight = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date().addingTimeInterval(86400)) else {
-            timeRemaining = "Error"
+            timeRemaining = "Mission's"
             return
         }
         
@@ -74,6 +75,15 @@ import SwiftUI
         let seconds = remainingSeconds % 60
         
         timeRemaining = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+    
+    func isNewTimeRemainingStarted() {
+        if dailyMission?.completed == true {
+            stopTimeRemaining = true
+        } else {
+            timeRemainingForMissionEnds()
+        }
+        
     }
     
     func getMission()  {
@@ -121,6 +131,7 @@ import SwiftUI
         dailyTracker = trackerClient.loadTracker()
     }
     
+     //Setting
     func resetAllData() {
         trackerClient.resetTracker()
         moodClient.resetMood()

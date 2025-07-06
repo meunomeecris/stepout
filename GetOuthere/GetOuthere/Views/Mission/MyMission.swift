@@ -2,30 +2,32 @@ import SwiftUI
 
 struct MyMission: View {
     @Environment(GetOuthereStore.self) var store
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         NavigationLink(destination: MissionView(store: _store)) {
             GeometryReader { geometry in
-                VStack(spacing: 12) {
-                    Image(systemName: "medal.star")
+                VStack(spacing: store.stopTimeRemaining ? 16 : 18) {
+                    //"medal.star"
+                    Image(systemName: "\(store.stopTimeRemaining ? "": "flag.pattern.checkered")")
                         .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.purple)
                         .opacity(0.8)
                         .font(.title)
                     
-                    Text(store.timeRemaining)
+                    Text("\(store.stopTimeRemaining ? "🎉" : store.timeRemaining )")
                         .foregroundStyle(.purple)
                         .bold()
-                        .font(.title)
+                        .opacity(0.8)
+                        .font(store.stopTimeRemaining ? .system(size: 55) : .title)
                         .onAppear {
-                            store.timeRemainingForMissionEnds()
+                            store.isNewTimeRemainingStarted()
                         }
                         .onReceive(timer) { _ in
-                            store.timeRemainingForMissionEnds()
+                            store.isNewTimeRemainingStarted()
                         }
                     
-                    Text("To finish\nthe mission")
+                    Text("\(store.stopTimeRemaining ? "Accomplished Mission" : "To finish\nthe mission")")
                         .foregroundStyle(.white.opacity(0.6))
                         .textCase(.uppercase)
                         .font(.caption)
@@ -43,5 +45,7 @@ struct MyMission: View {
 }
 
 #Preview {
+    let store = GetOuthereStore()
     MyMission()
+        .environment(store)
 }

@@ -35,6 +35,7 @@ struct ButtonCompletedMission: View {
 
     var body: some View {
         Button("\(store.handleDailyMission() ? "Mission accomplished" : "Complete the mission")", systemImage: store.handleDailyMission() ? "flag.pattern.checkered" : "") {
+            
             store.dailyMission?.completed = true
             store.savedMission()
             store.updatedTracker()

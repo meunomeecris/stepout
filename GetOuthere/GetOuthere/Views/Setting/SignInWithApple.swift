@@ -55,6 +55,9 @@ struct SignInWithApple: View {
 
 }
 
+
 #Preview {
+    let store = GetOuthereStore()
     SignInWithApple()
+        .environment(store)
 }

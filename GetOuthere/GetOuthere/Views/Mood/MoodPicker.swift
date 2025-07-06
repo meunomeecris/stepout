@@ -25,7 +25,6 @@ struct MoodPicker: View {
     
 #Preview {
     let store = GetOuthereStore()
-    
     MoodPicker()
         .environment(store)
 }
@@ -110,7 +109,9 @@ struct ButtonNavToMission: View {
             Button("Get my mission") {
                 store.getMission()
                 store.navigateToMissions = true
+                store.savedMission()
                 store.showGetMissionButton = false
+                store.stopTimeRemaining = false
             }
             .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
             .foregroundStyle(store.dailyMood?.color ?? .green)

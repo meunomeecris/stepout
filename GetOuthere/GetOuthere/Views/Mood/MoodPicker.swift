@@ -110,8 +110,8 @@ struct ButtonNavToMission: View {
             Button("Get my mission") {
                 store.getMission()
                 store.navigateToMissions = true
-                store.showGetMissionButton = false
                 store.savedMission()
+                store.showGetMissionButton = false
             }
             .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
             .foregroundStyle(store.dailyMood?.color ?? .green)

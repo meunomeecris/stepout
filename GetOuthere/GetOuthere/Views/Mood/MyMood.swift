@@ -6,7 +6,7 @@ struct MyMood: View {
     var body: some View {
         NavigationLink(destination: MoodPicker(store: _store)) {
             GeometryReader { geometry in
-                VStack(spacing: 16) {
+                VStack(spacing: 12) {
                     if let mood = store.dailyMood {
                         Text(mood.emoji)
                             .font(.system(size: 48))

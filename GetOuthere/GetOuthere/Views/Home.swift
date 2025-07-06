@@ -13,7 +13,7 @@ struct Home: View {
                     MyMission(store: _store)
                 }
                 HStack {
-                    ProfileView()
+                    MySetting()
                     Challenge()
                 }
             }

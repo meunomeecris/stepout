@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Profile:View {
+struct Setting:View {
     @Environment(GetOuthereStore.self) var store
     @AppStorage("userIdentifier") var userIdentifier = ""
     @AppStorage("isSignedIn") var isSignedIn = false
@@ -41,4 +41,11 @@ struct Profile:View {
         userIdentifier = ""
         isSignedIn = false
     }
+}
+
+
+#Preview {
+    let store = GetOuthereStore()
+    Setting()
+        .environment(store)
 }

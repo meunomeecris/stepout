@@ -9,7 +9,7 @@ struct MyMood: View {
                 VStack(spacing: 12) {
                     if let mood = store.dailyMood {
                         Text(mood.emoji)
-                            .font(.system(size: 48))
+                            .font(.system(size: 42))
                         
                         Text(mood.id.capitalized)
                             .bold()

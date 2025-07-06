@@ -1,33 +1,37 @@
 import SwiftUI
 
-struct ProfileView: View {
+struct MySetting: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
-        NavigationLink(destination: Profile()) {
+        NavigationLink(destination: Setting()) {
             GeometryReader { geometry in
                 VStack(spacing: 24) {
-                    Image(systemName: "person")
+                    Image(systemName: "gearshape")
                         .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-                        .foregroundStyle(.white)
+                        .font(.title)
+                        .foregroundStyle(.brown)
                         .opacity(0.8)
-                        .font(.title)
                     
-                    Text("Profile")
-                        .foregroundStyle(.red)
-                        .bold()
+                    Text("Menu")
                         .font(.title)
+                        .bold()
+                        .foregroundStyle(.brown)
+                        .opacity(0.8)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.red.opacity(0.1))
+                        .fill(Color.brown.opacity(0.08))
                 )
             }
         }
     }
 }
 
+
 #Preview {
-    ProfileView()
+    let store = GetOuthereStore()
+    MySetting()
+        .environment(store)
 }

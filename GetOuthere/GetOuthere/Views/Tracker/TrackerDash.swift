@@ -10,7 +10,7 @@ struct TrackerDash: View {
                     item(icon: "flag.pattern.checkered", value: store.dailyTracker.completed, label: "Completed", color: .green)
                     
                     Spacer()
-                    item(icon: "star", value: store.dailyTracker.point, label: "Points", color: .green)
+                    item(icon: "medal.star", value: store.dailyTracker.point, label: "Points", color: .green)
                     
                     Spacer()
                     

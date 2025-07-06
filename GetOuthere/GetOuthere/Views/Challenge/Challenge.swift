@@ -9,14 +9,15 @@ struct Challenge: View {
                 VStack(spacing: 24) {
                     Image(systemName: "hands.and.sparkles")
                         .symbolEffect(.bounce.up.byLayer, options: .nonRepeating)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.indigo)
                         .opacity(0.8)
                         .font(.title)
 
                     Text("Challenge")
-                        .foregroundStyle(.indigo)
-                        .bold()
                         .font(.title)
+                        .bold()
+                        .foregroundStyle(.indigo)
+                        .opacity(0.8)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .background(
@@ -26,4 +27,11 @@ struct Challenge: View {
             }
         }
     }
+}
+
+
+#Preview {
+    let store = GetOuthereStore()
+    Challenge()
+        .environment(store)
 }

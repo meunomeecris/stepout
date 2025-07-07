@@ -7,7 +7,8 @@ struct Setting:View {
     
     var body: some View {
         Button("Log Out") {
-            logOut()
+            userIdentifier = ""
+            store.logOut()
         }
         .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
         .foregroundStyle( .green)
@@ -22,7 +23,7 @@ struct Setting:View {
         .padding(.bottom, 50)
         
         Button("Resete all Data") {
-            store.resetAllData()
+            store.deleteAccount()
         }
         .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
         .foregroundStyle(.green)
@@ -35,11 +36,6 @@ struct Setting:View {
                 .opacity(0.1)
         )
         
-    }
-    
-    private func logOut() {
-        userIdentifier = ""
-        isSignedIn = false
     }
 }
 

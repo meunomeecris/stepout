@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Home: View {
+struct HomeView: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
@@ -9,12 +9,12 @@ struct Home: View {
                 Welcome(store: _store)
                 TrackerDash(store: _store)
                 HStack {
-                    MyMood(store: _store)
-                    MyMission(store: _store)
+                    MoodHome(store: _store)
+                    MissionHome(store: _store)
                 }
                 HStack {
-                    MySetting()
-                    Challenge()
+                    SettingHome()
+                    ChallengeHome()
                 }
             }
             .padding(16)
@@ -22,14 +22,16 @@ struct Home: View {
                 store.loadDailyMood()
                 store.loadDailyMission()
                 store.loadedTracker()
+                store.loadedUsername()
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 #Preview {
     let store = GetOuthereStore()
-    Home()
+    HomeView()
         .environment(store)
 }
 
@@ -53,7 +55,7 @@ struct Welcome: View {
                         .font(.title2)
                         .opacity(0.8)
                     
-                    Text("\(store.username.capitalized).")
+                    Text("\(store.usernameInput.capitalized).")
                         .font(.largeTitle)
                         .foregroundStyle(.green)
                         .bold()

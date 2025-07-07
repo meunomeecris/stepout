@@ -5,10 +5,23 @@ import SwiftUI
     private let moodClient = MoodClientLive()
     private let missionClient = MissionClientLive()
     private let trackerClient = TrackerClientLive()
+    private let authClient = AuthClientLive()
     
+    //Authentication
+    var usernameInput = ""
+    var flowState: AppFlowState = .login
+    var isUserLogged: Bool {
+        get { authClient.loadedAppFlowState() }
+        set {
+            authClient.savedAppFlowState(newValue)
+            flowState = newValue ? .home : .login
+        }
+    }
     
-    // Home's Data
-    var username = "Human"
+    init() {
+        flowState = isUserLogged ? .home : .login
+    }
+
     
     // Mood's Data
     let moodData: [Mood] = Mood.allMoods
@@ -24,8 +37,32 @@ import SwiftUI
     
     // Tracker's Data
     var dailyTracker: Tracker = Tracker(completed: 0, point: 0, streak: 0, date: Calendar.current.startOfDay(for: Date()))
+    
                                             
     //MARK: - App's Logic
+    
+    //Authentication
+    
+    func savedUsername() {
+        authClient.savedUsername(usernameInput)
+    }
+    
+    func loadedUsername() {
+        usernameInput = authClient.loadedUsername()
+    }
+    
+    func completedLogin() {
+        flowState = .username
+    }
+    
+    func completedUsername() {
+        isUserLogged = true
+    }
+    
+    func logOut() {
+        isUserLogged = false
+    }
+    
     
     // Home
     func greeting() -> String {
@@ -132,9 +169,12 @@ import SwiftUI
     }
     
      //Setting
-    func resetAllData() {
-        trackerClient.resetTracker()
-        moodClient.resetMood()
-        missionClient.resetMission()
+    func deleteAccount() {
+        trackerClient.deleteTracker()
+        moodClient.deleteMood()
+        missionClient.deleteMood()
+        authClient.deleteUsername()
+        authClient.delteAppFlowState()
+        logOut()
     }
 }

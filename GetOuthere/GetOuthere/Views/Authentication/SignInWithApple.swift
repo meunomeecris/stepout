@@ -2,9 +2,9 @@ import SwiftUI
 import AuthenticationServices
 
 struct SignInWithApple: View {
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(GetOuthereStore.self) var store
     @AppStorage("userIdentifier") var userIdentifier = ""
-    @AppStorage("isSignedIn") var isSignedIn = false
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationView {
@@ -15,6 +15,7 @@ struct SignInWithApple: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 250, height: 250)
+                
                 Text("Get Outhere")
                     .textCase(.uppercase)
                     .opacity(0.8)
@@ -23,6 +24,11 @@ struct SignInWithApple: View {
                     .bold()
                     .padding(.bottom,16)
                 
+                Text("You need an account\nto use this feature")
+                    .multilineTextAlignment(.center)
+                    .font(.headline)
+                    .kerning(1)
+                
                 
                 SignInWithAppleButton(.signIn) { request in
                     request.requestedScopes = [.email, .fullName]
@@ -30,7 +36,7 @@ struct SignInWithApple: View {
                     switch result {
                     case .success(let auth):
                         handleAuthSuccess(auth)
-                        isSignedIn = true
+                        store.completedLogin()
                     case . failure(let error):
                         print("Authorization failed: \(error.localizedDescription)")
                     }
@@ -39,9 +45,17 @@ struct SignInWithApple: View {
                     colorScheme == .dark ? .white : .black
                 )
                 .frame(height: 50)
-                .padding()
+                .padding(.horizontal, 16
+                )
+                .padding(.top, 24)
                 Spacer()
+                
+                Text("By signing up, you confirm that you are at least 13 years of age and agree to our terms and conditions.")
+                    .font(.footnote)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 16)
             }
+            .padding(16)
         }
     }
     

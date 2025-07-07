@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MySetting: View {
+struct SettingHome: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
@@ -32,6 +32,6 @@ struct MySetting: View {
 
 #Preview {
     let store = GetOuthereStore()
-    MySetting()
+    SettingHome()
         .environment(store)
 }

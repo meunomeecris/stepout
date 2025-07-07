@@ -23,7 +23,7 @@ struct MissionClientLive: MissionClient {
         return Mission(text: "Just Go Outhere and discovery the world!", point: 10, moodID: "okay", completed: false, date: Calendar.current.startOfDay(for: Date()))
     }
     
-    func resetMission() {
+    func deleteMood() {
         UserDefaults.standard.removeObject(forKey: userDefaultKey)
     }
 }

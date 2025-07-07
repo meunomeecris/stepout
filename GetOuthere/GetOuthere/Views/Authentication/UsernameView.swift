@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct UsernameView: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     
     var body: some View {
         @Bindable var bStore = store
@@ -21,7 +21,7 @@ struct UsernameView: View {
                 .font(.title2)
                 .opacity(0.8)
             
-            GetOuthereTextFieldView()
+                        SetpOutTextFieldView()
                 .padding(.bottom, 30)
             
             if !store.usernameInput.isEmpty {
@@ -34,14 +34,14 @@ struct UsernameView: View {
 
 
 #Preview {
-    let store = GetOuthereStore()
+    let store = SetpOutStore()
     UsernameView()
         .environment(store)
 }
 
 
-struct GetOuthereTextFieldView: View {
-    @Environment(GetOuthereStore.self) var store
+struct             SetpOutTextFieldView: View {
+    @Environment(SetpOutStore.self) var store
     @FocusState private var focused: Bool
     
     var body: some View {
@@ -68,7 +68,7 @@ struct GetOuthereTextFieldView: View {
 
 
 struct savedUsernameButton: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     
     var body: some View {
         Button("Step Out") {

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TrackerDash: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     
     var body: some View {
 //        NavigationLink(destination: TrackerDash(store: _store)) {

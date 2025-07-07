@@ -1,8 +1,8 @@
 import SwiftUI
 
 @main
-struct GetOuthereApp: App {
-    private var store = GetOuthereStore()
+struct SetpOutApp: App {
+    private var store = SetpOutStore()
     
     var body: some Scene {
         WindowGroup {

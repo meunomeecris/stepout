@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MissionHome: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -64,7 +64,7 @@ struct MissionHome: View {
 }
 
 #Preview {
-    let store = GetOuthereStore()
+    let store = SetpOutStore()
     MissionHome()
         .environment(store)
 }

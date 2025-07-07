@@ -29,9 +29,22 @@
 		8A1BE8D52E145E3500A627DD /* GetOuthereUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetOuthereUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8A287CA82E1BDA3F00F459C2 /* Exceptions for "GetOuthere" folder in "GetOuthere" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8A1BE8BC2E145E3200A627DD /* GetOuthere */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8A1BE8BF2E145E3200A627DD /* GetOuthere */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8A287CA82E1BDA3F00F459C2 /* Exceptions for "GetOuthere" folder in "GetOuthere" target */,
+			);
 			path = GetOuthere;
 			sourceTree = "<group>";
 		};
@@ -186,7 +199,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8A1BE8B82E145E3200A627DD /* Build configuration list for PBXProject "GetOuthere" */;
+			buildConfigurationList = 8A1BE8B82E145E3200A627DD /* Build configuration list for PBXProject "SetpOut" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -397,7 +410,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Get Outhere";
+				INFOPLIST_FILE = GetOuthere/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Step Out";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -414,7 +428,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = getouthere.app;
+				PRODUCT_BUNDLE_IDENTIFIER = stepout.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -438,7 +452,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Get Outhere";
+				INFOPLIST_FILE = GetOuthere/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Step Out";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -455,7 +470,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = getOuthere;
+				PRODUCT_BUNDLE_IDENTIFIER = stepout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -560,7 +575,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8A1BE8B82E145E3200A627DD /* Build configuration list for PBXProject "GetOuthere" */ = {
+		8A1BE8B82E145E3200A627DD /* Build configuration list for PBXProject "SetpOut" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A1BE8DD2E145E3500A627DD /* Debug */,

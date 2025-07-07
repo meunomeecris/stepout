@@ -147,7 +147,6 @@ import SwiftUI
         }
         return mission.completed
     }
-
     
     // Tracker
     func updatedTracker() {

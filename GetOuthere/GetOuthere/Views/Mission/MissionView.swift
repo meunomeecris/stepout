@@ -5,10 +5,18 @@ struct MissionView: View {
     
     var body: some View {
         VStack(spacing: 24) {
-            TitleMission()
-            CardMission(store: _store)
-            Spacer()
-            ButtonCompletedMission()
+            if store.dailyMission !=  nil {
+                TitleMission()
+                CardMission(store: _store)
+                Spacer()
+                ButtonCompletedMission()
+            } else {
+                Text("You didn't choose you mood!")
+                    .font(.title)
+                    .padding(16)
+                    .multilineTextAlignment(.center)
+            }
+            
         }
         .padding(16)
     }
@@ -55,6 +63,8 @@ struct ButtonCompletedMission: View {
         
     }
 }
+
+
 
 struct CardMission: View {
     @Environment(GetOuthereStore.self) var store

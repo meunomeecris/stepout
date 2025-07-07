@@ -17,7 +17,7 @@ struct UsernameView: View {
                     .foregroundStyle(.green)
             }
             .padding(.bottom, 40)
-            Text("What is you name?")
+            Text("What is your name?")
                 .font(.title2)
                 .opacity(0.8)
             
@@ -71,7 +71,7 @@ struct savedUsernameButton: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
-        Button("Let's start") {
+        Button("Step Out") {
             store.completedUsername()
             store.savedUsername()
         }

@@ -39,7 +39,7 @@ struct MissionHome: View {
                             .opacity(0.8)
                             .font(.title)
                         
-                        Text("My Mission")
+                        Text("Mission")
                             .foregroundStyle(.purple)
                             .bold()
                             .opacity(0.8)

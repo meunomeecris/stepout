@@ -11,7 +11,7 @@ struct MissionView: View {
                 Spacer()
                 ButtonCompletedMission()
             } else {
-                Text("You didn't choose you mood!")
+                Text("No mission yet!\nStart choosing your mood.")
                     .font(.title)
                     .padding(16)
                     .multilineTextAlignment(.center)

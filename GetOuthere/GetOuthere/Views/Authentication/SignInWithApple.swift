@@ -16,17 +16,17 @@ struct SignInWithApple: View {
                     .scaledToFit()
                     .frame(width: 250, height: 250)
                 
-                Text("Get Outhere")
+                Text("Step Out")
                     .textCase(.uppercase)
                     .opacity(0.8)
-                    .kerning(7)
-                    .font(.title3)
+                    .kerning(5)
+                    .font(.title)
                     .bold()
-                    .padding(.bottom,16)
+                    .padding(.bottom,8)
                 
-                Text("You need an account\nto use this feature")
+                Text("You need an account to use this feature")
                     .multilineTextAlignment(.center)
-                    .font(.headline)
+                    .font(.callout)
                     .kerning(1)
                 
                 

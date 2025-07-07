@@ -1,13 +1,6 @@
-//
-//  GetOuthereUITestsLaunchTests.swift
-//  GetOuthereUITests
-//
-//  Created by Cris Messias on 01/07/25.
-//
-
 import XCTest
 
-final class GetOuthereUITestsLaunchTests: XCTestCase {
+final class SetpOutUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

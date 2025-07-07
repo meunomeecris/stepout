@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MoodView: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     
     var body: some View {
         @Bindable var bStore = store
@@ -21,14 +21,14 @@ struct MoodView: View {
 }
     
 #Preview {
-    let store = GetOuthereStore()
+    let store = SetpOutStore()
     MoodView()
         .environment(store)
 }
 
 
 struct TitleMood: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     
     var body: some View {
         VStack (spacing: 24) {
@@ -69,7 +69,7 @@ struct TitleMood: View {
 
 
 struct MoodPicker: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
@@ -99,7 +99,7 @@ struct MoodPicker: View {
 
 
 struct ButtonNavToMission: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     
     var body: some View {
         if store.dailyMood != nil && store.showGetMissionButton {

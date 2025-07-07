@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingHome: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     
     var body: some View {
         NavigationLink(destination: Setting()) {
@@ -31,7 +31,7 @@ struct SettingHome: View {
 
 
 #Preview {
-    let store = GetOuthereStore()
+    let store = SetpOutStore()
     SettingHome()
         .environment(store)
 }

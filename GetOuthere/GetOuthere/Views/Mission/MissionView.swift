@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MissionView: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     
     var body: some View {
         VStack(spacing: 24) {
@@ -23,7 +23,7 @@ struct MissionView: View {
 }
 
 #Preview {
-    let store = GetOuthereStore()
+    let store = SetpOutStore()
     MissionView()
         .environment(store)
 }
@@ -39,7 +39,7 @@ struct TitleMission: View {
 }
 
 struct ButtonCompletedMission: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
 
     var body: some View {
         Button("\(store.handleDailyMission() ? "Mission accomplished" : "Complete the mission")", systemImage: store.handleDailyMission() ? "flag.pattern.checkered" : "") {
@@ -67,7 +67,7 @@ struct ButtonCompletedMission: View {
 
 
 struct CardMission: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     
     var body: some View {
         VStack {

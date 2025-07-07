@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     
     var body: some View {
         NavigationStack {
@@ -30,13 +30,13 @@ struct HomeView: View {
 }
 
 #Preview {
-    let store = GetOuthereStore()
+    let store = SetpOutStore()
     HomeView()
         .environment(store)
 }
 
 struct Welcome: View {
-    @Environment(GetOuthereStore.self) var store
+    @Environment(SetpOutStore.self) var store
     
     var body: some View {
         GeometryReader { geometry in

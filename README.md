@@ -1,7 +1,6 @@
-# Get Outhere
-Get moving. Get living. Get Out there.
+# Step Out
 
-**Get Outhere** is an iOS app designed for people who spend too much time indoors, feel unmotivated, or want to bring more adventure into their daily life. Through mood-based mini challenges, the app encourages users to get out, try something new, and break routines, one small mission at a time.
+**Step Out** is an iOS app designed for people who spend too much time indoors, feel unmotivated, or want to bring more adventure into their daily life. Through mood-based mini challenges, the app encourages users to get out, try something new, and break routines, one small mission at a time.
 
 
 <p align="center">

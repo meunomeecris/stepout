@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MoodPicker: View {
+struct MoodView: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
@@ -9,11 +9,8 @@ struct MoodPicker: View {
         NavigationStack {
             VStack(spacing: 24) {
                 TitleMood(store: _store)
-                
-                AllMoods(store: _store)
-                
+                MoodPicker(store: _store)
                 Spacer()
-                
                 ButtonNavToMission(store: _store)
             }
             .navigationDestination(isPresented: $bStore.navigateToMissions) {
@@ -25,7 +22,7 @@ struct MoodPicker: View {
     
 #Preview {
     let store = GetOuthereStore()
-    MoodPicker()
+    MoodView()
         .environment(store)
 }
 
@@ -71,7 +68,7 @@ struct TitleMood: View {
 }
 
 
-struct AllMoods: View {
+struct MoodPicker: View {
     @Environment(GetOuthereStore.self) var store
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     

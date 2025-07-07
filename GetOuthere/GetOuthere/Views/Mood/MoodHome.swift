@@ -1,10 +1,10 @@
 import SwiftUI
 
-struct MyMood: View {
+struct MoodHome: View {
     @Environment(GetOuthereStore.self) var store
     
     var body: some View {
-        NavigationLink(destination: MoodPicker(store: _store)) {
+        NavigationLink(destination: MoodView(store: _store)) {
             GeometryReader { geometry in
                 VStack(spacing: 12) {
                     if let mood = store.dailyMood {
@@ -36,6 +36,6 @@ struct MyMood: View {
 
 #Preview {
     let store = GetOuthereStore()
-    MyMood()
+    MoodHome()
         .environment(store)
 }

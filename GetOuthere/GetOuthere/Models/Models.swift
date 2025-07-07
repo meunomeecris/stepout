@@ -39,3 +39,9 @@ struct Tracker: Codable {
     var streak: Int
     var date: Date
 }
+
+enum AppFlowState: Codable {
+    case login
+    case username
+    case home
+}

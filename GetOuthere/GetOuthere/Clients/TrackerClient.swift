@@ -5,5 +5,5 @@ protocol TrackerClient {
     func loadTracker() -> Tracker
     func checkForNewDay() -> Bool
     func updateLastTrackDate(_ date: Date)
-    func resetTracker()
+    func deleteTracker()
 }

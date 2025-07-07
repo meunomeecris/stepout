@@ -29,7 +29,7 @@ struct TrackerClientLive: TrackerClient {
         UserDefaults.standard.set(Date(), forKey: lastTrackerUpdate)
     }
     
-    func resetTracker() {
+    func deleteTracker() {
         UserDefaults.standard.removeObject(forKey: userDefaultKey)
         UserDefaults.standard.removeObject(forKey: lastTrackerUpdate)
     }

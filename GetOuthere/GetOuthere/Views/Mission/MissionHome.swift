@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MyMission: View {
+struct MissionHome: View {
     @Environment(GetOuthereStore.self) var store
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -46,6 +46,6 @@ struct MyMission: View {
 
 #Preview {
     let store = GetOuthereStore()
-    MyMission()
+    MissionHome()
         .environment(store)
 }

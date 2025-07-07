@@ -9,7 +9,7 @@ struct MissionClientLive: MissionClient {
         }
     }
     
-    func loadMission() -> Mission {
+    func loadMission() -> Mission? {
         let calendar = Calendar.current
         let now = Date()
         
@@ -20,7 +20,7 @@ struct MissionClientLive: MissionClient {
             }
         }
         print("No saved mission found, resetting mood.")
-        return Mission(text: "Just Go Outhere and discovery the world!", point: 10, moodID: "okay", completed: false, date: Calendar.current.startOfDay(for: Date()))
+        return  nil
     }
     
     func deleteMood() {

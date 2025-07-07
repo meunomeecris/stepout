@@ -41,10 +41,10 @@ struct Welcome: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Text("Get Outhere")
+                Text("Step Out")
                     .textCase(.uppercase)
                     .opacity(0.8)
-                    .kerning(7)
+                    .kerning(5)
                     .font(.title3)
                     .bold()
                     .padding(.bottom,16)

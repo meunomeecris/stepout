@@ -9,7 +9,7 @@ struct AuthClientLive: AuthClient {
     }
     
     func loadedUsername() -> String {
-        return UserDefaults.standard.string(forKey: UsernameUserDefaultKey) ?? "Human"
+        return UserDefaults.standard.string(forKey: UsernameUserDefaultKey) ?? ""
     }
     
     func deleteUsername() {

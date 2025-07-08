@@ -6,36 +6,20 @@ struct Setting:View {
     @AppStorage("isSignedIn") var isSignedIn = false
     
     var body: some View {
-        Button("Log Out") {
-            userIdentifier = ""
-            store.logOut()
-        }
-        .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-        .foregroundStyle( .green)
-        .bold()
-        .textCase(.uppercase)
-        .padding(24)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(.green)
-                .opacity(0.1)
-        )
+        ButtonView(
+            label: "Log Out",
+            color: .green) {
+                userIdentifier = ""
+                store.logOut()
+            }
+
         .padding(.bottom, 50)
         
-        Button("Resete all Data") {
-            store.deleteAccount()
-        }
-        .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-        .foregroundStyle(.green)
-        .bold()
-        .textCase(.uppercase)
-        .padding(24)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(.green)
-                .opacity(0.1)
-        )
-        
+        ButtonView(
+            label: "Delet my account",
+            color: .green) {
+                store.deleteAccount()
+            }
     }
 }
 

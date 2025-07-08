@@ -6,12 +6,12 @@ struct MissionView: View {
     var body: some View {
         VStack(spacing: 24) {
             if store.dailyMission !=  nil {
-                TitleMission()
+                TitleView(label: "Today's mission")
                 CardMission(store: _store)
                 Spacer()
                 ButtonCompletedMission()
             } else {
-                Text("No mission yet!\nStart choosing your mood.")
+                Text("No missions yet!\nStart choosing your mood.")
                     .font(.title)
                     .padding(16)
                     .multilineTextAlignment(.center)
@@ -28,21 +28,11 @@ struct MissionView: View {
         .environment(store)
 }
 
-struct TitleMission: View {
-    var body: some View {
-        Text("Today's mission")
-            .multilineTextAlignment(.center)
-            .font(.title)
-            .bold()
-            .padding(.top, 24)
-    }
-}
-
 struct ButtonCompletedMission: View {
     @Environment(SetpOutStore.self) var store
 
     var body: some View {
-        Button("\(store.handleDailyMission() ? "Mission accomplished" : "Complete the mission")", systemImage: store.handleDailyMission() ? "flag.pattern.checkered" : "") {
+        Button("\(store.isMissionCompleted() ? "Mission accomplished" : "Complete the mission")", systemImage: store.isMissionCompleted() ? "flag.pattern.checkered" : "") {
             
             store.dailyMission?.completed = true
             store.savedMission()
@@ -51,19 +41,18 @@ struct ButtonCompletedMission: View {
             
         }
         .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-        .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green )
+        .foregroundStyle(store.isMissionCompleted() ? .gray : store.dailyMood?.color ?? .green )
         .bold()
         .textCase(.uppercase)
         .padding(24)
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green )
+                .fill(store.isMissionCompleted() ? .gray : store.dailyMood?.color ?? .green )
                 .opacity(0.1)
         )
         
     }
 }
-
 
 
 struct CardMission: View {
@@ -72,14 +61,14 @@ struct CardMission: View {
     var body: some View {
         VStack {
             Text(store.dailyMission?.text ?? "Just Get Outhere!")
-                .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+                .foregroundStyle(store.isMissionCompleted() ? .gray : store.dailyMood?.color ?? .green)
                 .font(.title2)
                 .multilineTextAlignment(.center)
                 .padding(40)
                 .bold()
             
             Divider()
-                .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+                .foregroundStyle(store.isMissionCompleted() ? .gray : store.dailyMood?.color ?? .green)
             
             HStack {
                 Spacer()
@@ -87,31 +76,31 @@ struct CardMission: View {
                     Text(store.dailyMood?.emoji ?? "🌻")
                     Text(store.dailyMission?.moodID.capitalized ?? "Mood")
                         .font(.title3)
-                        .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+                        .foregroundStyle(store.isMissionCompleted() ? .gray : store.dailyMood?.color ?? .green)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+                        .fill(store.isMissionCompleted() ? .gray : store.dailyMood?.color ?? .green)
                         .opacity(0.1)
                 )
                 Spacer()
                 HStack {
                     Text("\(store.dailyMission?.point ?? 3)")
                         .font(.title2)
-                        .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+                        .foregroundStyle(store.isMissionCompleted() ? .gray : store.dailyMood?.color ?? .green)
                     Text("Points")
                         .font(.caption)
                         .textCase(.uppercase)
                         .kerning(2)
-                        .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+                        .foregroundStyle(store.isMissionCompleted() ? .gray : store.dailyMood?.color ?? .green)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+                        .fill(store.isMissionCompleted() ? .gray : store.dailyMood?.color ?? .green)
                         .opacity(0.1)
                 )
                 Spacer()
@@ -121,7 +110,7 @@ struct CardMission: View {
         .padding(16)
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(store.handleDailyMission() ?.gray : store.dailyMood?.color ?? .green)
+                .fill(store.isMissionCompleted() ?.gray : store.dailyMood?.color ?? .green)
                 .opacity(0.1)
         )
     }

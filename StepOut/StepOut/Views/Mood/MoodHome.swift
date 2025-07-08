@@ -16,7 +16,7 @@ struct MoodHome: View {
                             .foregroundStyle(mood.color)
                             .font(.title)
                         
-                        Text("Mood")
+                        Text("\(store.dailyMood == nil ? "" : "Mood")")
                             .foregroundStyle(.white.opacity(0.6))
                             .textCase(.uppercase)
                             .font(.caption)

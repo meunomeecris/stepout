@@ -32,11 +32,7 @@ struct TitleMood: View {
     
     var body: some View {
         VStack (spacing: 24) {
-            Text("How are you\nfeeling today?")
-                .multilineTextAlignment(.center)
-                .font(.title)
-                .bold()
-                .padding(.top, 24)
+            TitleView(label: "How are you\nfeeling today?")
             
             if let mood = store.dailyMood {
                 Text(mood.id)
@@ -77,7 +73,7 @@ struct MoodPicker: View {
             ForEach(store.moodData) { mood in
                 Button {
                     store.savedDailyMood(mood)
-                    store.showGetMissionButton = true
+                    store.getMissionButton = true
                 } label: {
                     VStack(spacing: 0) {
                         Text(mood.emoji)
@@ -102,12 +98,12 @@ struct ButtonNavToMission: View {
     @Environment(SetpOutStore.self) var store
     
     var body: some View {
-        if store.dailyMood != nil && store.showGetMissionButton {
+        if store.dailyMood != nil && store.getMissionButton {
             Button("Get my mission") {
                 store.getMission()
                 store.navigateToMissions = true
                 store.savedMission()
-                store.showGetMissionButton = false
+                store.getMissionButton = false
                 store.stopTimeRemaining = false
             }
             .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)

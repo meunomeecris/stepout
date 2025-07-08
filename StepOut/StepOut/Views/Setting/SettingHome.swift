@@ -10,19 +10,19 @@ struct SettingHome: View {
                     Image(systemName: "gearshape")
                         .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
                         .font(.title)
-                        .foregroundStyle(.brown)
+                        .foregroundStyle(.pink)
                         .opacity(0.8)
                     
                     Text("Menu")
                         .font(.title)
                         .bold()
-                        .foregroundStyle(.brown)
+                        .foregroundStyle(.pink)
                         .opacity(0.8)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.brown.opacity(0.08))
+                        .fill(Color.pink.opacity(0.08))
                 )
             }
         }

@@ -8,7 +8,6 @@ import SwiftUI
     private let authClient = AuthClientLive()
     
     //Authentication
-    var usernameInput = ""
     var flowState: AppFlowState = .login
     var isUserLogged: Bool {
         get { authClient.loadedAppFlowState() }
@@ -21,13 +20,12 @@ import SwiftUI
     init() {
         flowState = isUserLogged ? .home : .login
     }
-
     
     // Mood's Data
     let moodData: [Mood] = Mood.allMoods
     var dailyMood: Mood? = nil
     var navigateToMissions: Bool = false
-    var showGetMissionButton: Bool = false
+    var getMissionButton: Bool = false
     
     // Mission's Data
     let missionData: [Mission] = Mission.allMissions
@@ -42,27 +40,13 @@ import SwiftUI
     //MARK: - App's Logic
     
     //Authentication
-    
-    func savedUsername() {
-        authClient.savedUsername(usernameInput)
-    }
-    
-    func loadedUsername() {
-        usernameInput = authClient.loadedUsername()
-    }
-    
     func completedLogin() {
-        flowState = .username
-    }
-    
-    func completedUsername() {
         isUserLogged = true
     }
     
     func logOut() {
         isUserLogged = false
     }
-    
     
     // Home
     func greeting() -> String {
@@ -141,7 +125,7 @@ import SwiftUI
         dailyMission = mission
     }
     
-    func handleDailyMission() -> Bool {
+    func isMissionCompleted() -> Bool {
         guard let mission = dailyMission else {
             return false
         }
@@ -172,7 +156,6 @@ import SwiftUI
         trackerClient.deleteTracker()
         moodClient.deleteMood()
         missionClient.deleteMood()
-        authClient.deleteUsername()
         authClient.delteAppFlowState()
         logOut()
     }

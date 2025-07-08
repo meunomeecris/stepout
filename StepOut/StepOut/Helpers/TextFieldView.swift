@@ -1,12 +1,12 @@
 import SwiftUI
 
-struct UniverseTextFieldModifier: ViewModifier {
+struct TextFieldView: ViewModifier {
     func body(content: Content) -> some View {
         content
+            .focusable(true)
             .font(.title2)
             .foregroundStyle(.green)
             .bold()
-            .focusable(true)
             .padding([.top, .bottom], 16)
             .padding(.horizontal)
             .background(.green.opacity(0.1))
@@ -16,7 +16,12 @@ struct UniverseTextFieldModifier: ViewModifier {
 }
 
 extension View {
-    func universeTextFieldModifier() -> some View {
-        self.modifier(UniverseTextFieldModifier())
+    func textFieldModifier() -> some View {
+        self.modifier(TextFieldView())
     }
+}
+
+#Preview {
+    TextField("Test", text: .constant(""))
+        .textFieldModifier()
 }

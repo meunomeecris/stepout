@@ -22,7 +22,6 @@ struct HomeView: View {
                 store.loadDailyMood()
                 store.loadDailyMission()
                 store.loadedTracker()
-                store.loadedUsername()
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -37,6 +36,7 @@ struct HomeView: View {
 
 struct Welcome: View {
     @Environment(SetpOutStore.self) var store
+    @AppStorage("username") var usernameApple = ""
     
     var body: some View {
         GeometryReader { geometry in
@@ -55,7 +55,7 @@ struct Welcome: View {
                         .font(.title2)
                         .opacity(0.8)
                     
-                    Text("\(store.usernameInput.capitalized).")
+                    Text("\(usernameApple.capitalized).")
                         .font(.largeTitle)
                         .foregroundStyle(.green)
                         .bold()

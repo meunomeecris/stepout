@@ -42,6 +42,5 @@ struct Tracker: Codable {
 
 enum AppFlowState: Codable {
     case login
-    case username
     case home
 }

@@ -8,8 +8,6 @@ struct Root: View {
             switch store.flowState {
             case .login:
                 SignInWithApple()
-            case .username:
-                UsernameView()
             case .home:
                 HomeView()
             }

@@ -24,18 +24,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8A1BE8BD2E145E3200A627DD /* GetOuthere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetOuthere.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A1BE8CB2E145E3500A627DD /* GetOuthereTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetOuthereTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A1BE8D52E145E3500A627DD /* GetOuthereUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetOuthereUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A1BE8BD2E145E3200A627DD /* StepOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StepOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A1BE8CB2E145E3500A627DD /* StepOutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StepOutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A1BE8D52E145E3500A627DD /* StepOutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StepOutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8A287CA82E1BDA3F00F459C2 /* Exceptions for "StepOut" folder in "GetOuthere" target */ = {
+		8A287CA82E1BDA3F00F459C2 /* Exceptions for "StepOut" folder in "StepOut" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 8A1BE8BC2E145E3200A627DD /* GetOuthere */;
+			target = 8A1BE8BC2E145E3200A627DD /* StepOut */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -43,7 +43,7 @@
 		8A1BE8BF2E145E3200A627DD /* StepOut */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				8A287CA82E1BDA3F00F459C2 /* Exceptions for "StepOut" folder in "GetOuthere" target */,
+				8A287CA82E1BDA3F00F459C2 /* Exceptions for "StepOut" folder in "StepOut" target */,
 			);
 			path = StepOut;
 			sourceTree = "<group>";
@@ -98,9 +98,9 @@
 		8A1BE8BE2E145E3200A627DD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8A1BE8BD2E145E3200A627DD /* GetOuthere.app */,
-				8A1BE8CB2E145E3500A627DD /* GetOuthereTests.xctest */,
-				8A1BE8D52E145E3500A627DD /* GetOuthereUITests.xctest */,
+				8A1BE8BD2E145E3200A627DD /* StepOut.app */,
+				8A1BE8CB2E145E3500A627DD /* StepOutTests.xctest */,
+				8A1BE8D52E145E3500A627DD /* StepOutUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8A1BE8BC2E145E3200A627DD /* GetOuthere */ = {
+		8A1BE8BC2E145E3200A627DD /* StepOut */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A1BE8DF2E145E3500A627DD /* Build configuration list for PBXNativeTarget "GetOuthere" */;
+			buildConfigurationList = 8A1BE8DF2E145E3500A627DD /* Build configuration list for PBXNativeTarget "StepOut" */;
 			buildPhases = (
 				8A1BE8B92E145E3200A627DD /* Sources */,
 				8A1BE8BA2E145E3200A627DD /* Frameworks */,
@@ -123,16 +123,16 @@
 			fileSystemSynchronizedGroups = (
 				8A1BE8BF2E145E3200A627DD /* StepOut */,
 			);
-			name = GetOuthere;
+			name = StepOut;
 			packageProductDependencies = (
 			);
 			productName = GetOuthere;
-			productReference = 8A1BE8BD2E145E3200A627DD /* GetOuthere.app */;
+			productReference = 8A1BE8BD2E145E3200A627DD /* StepOut.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8A1BE8CA2E145E3500A627DD /* GetOuthereTests */ = {
+		8A1BE8CA2E145E3500A627DD /* StepOutTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A1BE8E22E145E3500A627DD /* Build configuration list for PBXNativeTarget "GetOuthereTests" */;
+			buildConfigurationList = 8A1BE8E22E145E3500A627DD /* Build configuration list for PBXNativeTarget "StepOutTests" */;
 			buildPhases = (
 				8A1BE8C72E145E3500A627DD /* Sources */,
 				8A1BE8C82E145E3500A627DD /* Frameworks */,
@@ -146,16 +146,16 @@
 			fileSystemSynchronizedGroups = (
 				8A1BE8CE2E145E3500A627DD /* StepOutTests */,
 			);
-			name = GetOuthereTests;
+			name = StepOutTests;
 			packageProductDependencies = (
 			);
 			productName = GetOuthereTests;
-			productReference = 8A1BE8CB2E145E3500A627DD /* GetOuthereTests.xctest */;
+			productReference = 8A1BE8CB2E145E3500A627DD /* StepOutTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8A1BE8D42E145E3500A627DD /* GetOuthereUITests */ = {
+		8A1BE8D42E145E3500A627DD /* StepOutUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A1BE8E52E145E3500A627DD /* Build configuration list for PBXNativeTarget "GetOuthereUITests" */;
+			buildConfigurationList = 8A1BE8E52E145E3500A627DD /* Build configuration list for PBXNativeTarget "StepOutUITests" */;
 			buildPhases = (
 				8A1BE8D12E145E3500A627DD /* Sources */,
 				8A1BE8D22E145E3500A627DD /* Frameworks */,
@@ -169,11 +169,11 @@
 			fileSystemSynchronizedGroups = (
 				8A1BE8D82E145E3500A627DD /* StepOutUITests */,
 			);
-			name = GetOuthereUITests;
+			name = StepOutUITests;
 			packageProductDependencies = (
 			);
 			productName = GetOuthereUITests;
-			productReference = 8A1BE8D52E145E3500A627DD /* GetOuthereUITests.xctest */;
+			productReference = 8A1BE8D52E145E3500A627DD /* StepOutUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -213,9 +213,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8A1BE8BC2E145E3200A627DD /* GetOuthere */,
-				8A1BE8CA2E145E3500A627DD /* GetOuthereTests */,
-				8A1BE8D42E145E3500A627DD /* GetOuthereUITests */,
+				8A1BE8BC2E145E3200A627DD /* StepOut */,
+				8A1BE8CA2E145E3500A627DD /* StepOutTests */,
+				8A1BE8D42E145E3500A627DD /* StepOutUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -271,12 +271,12 @@
 /* Begin PBXTargetDependency section */
 		8A1BE8CD2E145E3500A627DD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8A1BE8BC2E145E3200A627DD /* GetOuthere */;
+			target = 8A1BE8BC2E145E3200A627DD /* StepOut */;
 			targetProxy = 8A1BE8CC2E145E3500A627DD /* PBXContainerItemProxy */;
 		};
 		8A1BE8D72E145E3500A627DD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8A1BE8BC2E145E3200A627DD /* GetOuthere */;
+			target = 8A1BE8BC2E145E3200A627DD /* StepOut */;
 			targetProxy = 8A1BE8D62E145E3500A627DD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -315,6 +315,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = StepOut/StepOut.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = StepOut/StepOut.entitlements;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 7T93UNM5FF;
@@ -377,6 +379,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = StepOut/StepOut.entitlements;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 7T93UNM5FF;
@@ -403,14 +406,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = GetOuthere/GetOuthereDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = StepOut/StepOutDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q3P9S9Y8NQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GetOuthere/Info.plist;
+				INFOPLIST_FILE = StepOut/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Step Out";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -445,14 +448,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = GetOuthere/GetOuthere.entitlements;
+				CODE_SIGN_ENTITLEMENTS = StepOut/StepOut.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7T93UNM5FF;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GetOuthere/Info.plist;
+				INFOPLIST_FILE = StepOut/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Step Out";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -584,7 +587,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A1BE8DF2E145E3500A627DD /* Build configuration list for PBXNativeTarget "GetOuthere" */ = {
+		8A1BE8DF2E145E3500A627DD /* Build configuration list for PBXNativeTarget "StepOut" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A1BE8E02E145E3500A627DD /* Debug */,
@@ -593,7 +596,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A1BE8E22E145E3500A627DD /* Build configuration list for PBXNativeTarget "GetOuthereTests" */ = {
+		8A1BE8E22E145E3500A627DD /* Build configuration list for PBXNativeTarget "StepOutTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A1BE8E32E145E3500A627DD /* Debug */,
@@ -602,7 +605,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A1BE8E52E145E3500A627DD /* Build configuration list for PBXNativeTarget "GetOuthereUITests" */ = {
+		8A1BE8E52E145E3500A627DD /* Build configuration list for PBXNativeTarget "StepOutUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A1BE8E62E145E3500A627DD /* Debug */,

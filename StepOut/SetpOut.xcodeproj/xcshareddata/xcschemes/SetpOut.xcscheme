@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8A1BE8BC2E145E3200A627DD"
-               BuildableName = "GetOuthere.app"
-               BlueprintName = "GetOuthere"
+               BuildableName = "StepOut.app"
+               BlueprintName = "StepOut"
                ReferencedContainer = "container:SetpOut.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A1BE8BC2E145E3200A627DD"
-            BuildableName = "GetOuthere.app"
-            BlueprintName = "GetOuthere"
+            BuildableName = "StepOut.app"
+            BlueprintName = "StepOut"
             ReferencedContainer = "container:SetpOut.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A1BE8BC2E145E3200A627DD"
-            BuildableName = "GetOuthere.app"
-            BlueprintName = "GetOuthere"
+            BuildableName = "StepOut.app"
+            BlueprintName = "StepOut"
             ReferencedContainer = "container:SetpOut.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

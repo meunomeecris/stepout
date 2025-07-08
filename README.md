@@ -33,8 +33,11 @@ Challenge your friends and share photo proof.
 
 ## Built With
 Swift + SwiftUI
+
 UserDefaults for simple data storage
+
 MVC
+
 Xcode
 
 ## Disclaimer

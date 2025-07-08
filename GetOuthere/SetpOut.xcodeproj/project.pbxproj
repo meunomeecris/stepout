@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8A287CA82E1BDA3F00F459C2 /* Exceptions for "GetOuthere" folder in "GetOuthere" target */ = {
+		8A287CA82E1BDA3F00F459C2 /* Exceptions for "StepOut" folder in "GetOuthere" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -40,22 +40,22 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		8A1BE8BF2E145E3200A627DD /* GetOuthere */ = {
+		8A1BE8BF2E145E3200A627DD /* StepOut */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				8A287CA82E1BDA3F00F459C2 /* Exceptions for "GetOuthere" folder in "GetOuthere" target */,
+				8A287CA82E1BDA3F00F459C2 /* Exceptions for "StepOut" folder in "GetOuthere" target */,
 			);
-			path = GetOuthere;
+			path = StepOut;
 			sourceTree = "<group>";
 		};
-		8A1BE8CE2E145E3500A627DD /* GetOuthereTests */ = {
+		8A1BE8CE2E145E3500A627DD /* StepOutTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = GetOuthereTests;
+			path = StepOutTests;
 			sourceTree = "<group>";
 		};
-		8A1BE8D82E145E3500A627DD /* GetOuthereUITests */ = {
+		8A1BE8D82E145E3500A627DD /* StepOutUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = GetOuthereUITests;
+			path = StepOutUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -88,9 +88,9 @@
 		8A1BE8B42E145E3200A627DD = {
 			isa = PBXGroup;
 			children = (
-				8A1BE8BF2E145E3200A627DD /* GetOuthere */,
-				8A1BE8CE2E145E3500A627DD /* GetOuthereTests */,
-				8A1BE8D82E145E3500A627DD /* GetOuthereUITests */,
+				8A1BE8BF2E145E3200A627DD /* StepOut */,
+				8A1BE8CE2E145E3500A627DD /* StepOutTests */,
+				8A1BE8D82E145E3500A627DD /* StepOutUITests */,
 				8A1BE8BE2E145E3200A627DD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,7 +121,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				8A1BE8BF2E145E3200A627DD /* GetOuthere */,
+				8A1BE8BF2E145E3200A627DD /* StepOut */,
 			);
 			name = GetOuthere;
 			packageProductDependencies = (
@@ -144,7 +144,7 @@
 				8A1BE8CD2E145E3500A627DD /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				8A1BE8CE2E145E3500A627DD /* GetOuthereTests */,
+				8A1BE8CE2E145E3500A627DD /* StepOutTests */,
 			);
 			name = GetOuthereTests;
 			packageProductDependencies = (
@@ -167,7 +167,7 @@
 				8A1BE8D72E145E3500A627DD /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				8A1BE8D82E145E3500A627DD /* GetOuthereUITests */,
+				8A1BE8D82E145E3500A627DD /* StepOutUITests */,
 			);
 			name = GetOuthereUITests;
 			packageProductDependencies = (

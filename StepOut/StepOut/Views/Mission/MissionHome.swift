@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MissionHome: View {
     @Environment(SetpOutStore.self) var store
+    @Environment(\.colorScheme) var colorScheme
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -28,7 +29,8 @@ struct MissionHome: View {
                             }
                         
                         Text("\(store.stopTimeRemaining ? "Accomplished Mission" : "To finish\nthe mission")")
-                            .foregroundStyle(.white.opacity(0.6))
+//                            .foregroundStyle(.white.opacity(0.6))
+                            .foregroundStyle(colorScheme == .dark ? .white.opacity(0.6) : .purple.opacity(0.8))
                             .textCase(.uppercase)
                             .font(.caption)
                             .kerning(2)
@@ -56,7 +58,7 @@ struct MissionHome: View {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .background(
                         RoundedRectangle(cornerRadius: 20)
-                            .fill(Color.purple.opacity(0.1))
+                            .fill(Color.purple.opacity(0.2))
                     )
             }
         }

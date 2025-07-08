@@ -22,7 +22,7 @@ struct ChallengeHome: View {
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(.indigo.opacity(0.1))
+                        .fill(.indigo.opacity(0.2))
                 )
             }
         }

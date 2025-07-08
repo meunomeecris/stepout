@@ -13,7 +13,7 @@ struct HomeView: View {
                     MissionHome(store: _store)
                 }
                 HStack {
-                    SettingHome()
+                    MenuHome()
                     ChallengeHome()
                 }
             }
@@ -37,6 +37,7 @@ struct HomeView: View {
 struct Welcome: View {
     @Environment(SetpOutStore.self) var store
     @AppStorage("username") var usernameApple = ""
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         GeometryReader { geometry in
@@ -70,7 +71,7 @@ struct Welcome: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
             .background(
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.gray.opacity(0.08))
+                    .fill(.gray.opacity(0.1))
             )
         }
     }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MissionView: View {
     @Environment(SetpOutStore.self) var store
+    @Environment(\.colorScheme) var colorSchem
     
     var body: some View {
         VStack(spacing: 24) {

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MoodHome: View {
     @Environment(SetpOutStore.self) var store
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationLink(destination: MoodView(store: _store)) {
@@ -17,7 +18,7 @@ struct MoodHome: View {
                             .font(.title)
                         
                         Text("\(store.dailyMood == nil ? "" : "Mood")")
-                            .foregroundStyle(.white.opacity(0.6))
+                            .foregroundStyle(colorScheme == .dark ? .white.opacity(0.6) : store.dailyMood?.color.opacity(0.7) ?? .yellow)
                             .textCase(.uppercase)
                             .font(.caption)
                             .kerning(2)
@@ -27,7 +28,7 @@ struct MoodHome: View {
                 .background(
                     RoundedRectangle(cornerRadius: 20)
                         .fill(store.dailyMood?.color ?? .yellow)
-                        .opacity(0.1)
+                        .opacity(0.2)
                 )
             }
         }

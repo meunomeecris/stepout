@@ -19,7 +19,6 @@ struct MissionClientLive: MissionClient {
                 return savedMission
             }
         }
-        print("No saved mission found, resetting mood.")
         return  nil
     }
     

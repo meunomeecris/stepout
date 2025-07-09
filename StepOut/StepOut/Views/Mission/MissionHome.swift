@@ -7,7 +7,7 @@ struct MissionHome: View {
         NavigationLink(destination: MissionView(store: _store)) {
             GeometryReader { geometry in
                 VStack(spacing: store.stopTimeRemaining ? 16 : 18) {
-                    if store.dailyMission != nil {
+                    if store.hasMission {
                         StartedDailyMission(store: _store)
                     } else {
                         EmptyDailyMission(store: _store)

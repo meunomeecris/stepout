@@ -19,8 +19,6 @@ struct MoodClientLive: MoodClient {
                 return savedMoods
             }
         }
-        
-        print("No saved mood found, resetting mood.")
         return DailyMood(mood: Mood.init(id: "Mood", emoji: "🌻", colorName: "yellow"), date: Date())
     }
     

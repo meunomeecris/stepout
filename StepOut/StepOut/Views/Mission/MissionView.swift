@@ -10,18 +10,8 @@ struct MissionView: View {
             if store.uncompletedMission {
                 TitleView(label: "Today's mission")
                 CardMission(
-                    dailyMission: store.dailyMission ?? Mission(
-                        text: "Mission",
-                        point: 3,
-                        moodID: "happy",
-                        completed: false,
-                        date: Date()
-                    ),
-                    dailyMood: store.dailyMood ?? Mood(
-                        id: "Motivated",
-                        emoji: "😏",
-                        colorName: "yellow"
-                    )
+                    dailyMission: store.dailyMission ?? store.standartDailyMission,
+                    dailyMood: store.dailyMood ?? store.standartDailyMood
                 )
                 Spacer()
                 ButtonCompletedMission()

@@ -35,17 +35,26 @@ import SwiftUI
     var navigateToMissions: Bool = false
     var getMissionButton: Bool = false
     
+    let standartDailyMood: Mood = Mood(
+        id: "Motivated",
+        emoji: "😏",
+        colorName: "yellow"
+        )
+    
     // Mission's Data
     let missionData: [Mission] = Mission.allMissions
     var dailyMission: Mission? = nil
     var timeRemaining = ""
     var stopTimeRemaining = false
-    
+    let standartDailyMission: Mission = Mission(
+        text: "Just Go out!",
+        point: 6,
+        moodID: "happy",
+        completed: false,
+        date: Date()
+        )
     // Tracker's Data
     var dailyTracker: Tracker = Tracker(completed: 0, point: 0, streak: 0, date: Calendar.current.startOfDay(for: Date()))
-    
-    // PopUp
-    var pointsRecieved = false
     
                                             
     //MARK: - App's Logic

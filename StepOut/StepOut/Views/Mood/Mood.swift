@@ -32,11 +32,7 @@ struct TitleMood: View {
     
     var body: some View {
         VStack (spacing: 24) {
-            Text("How are you\nfeeling today?")
-                .multilineTextAlignment(.center)
-                .font(.title)
-                .bold()
-                .padding(.top, 24)
+            TitleView(label: "How are you\nfeeling today?")
             
             if let mood = store.dailyMood {
                 Text(mood.id)
@@ -46,10 +42,7 @@ struct TitleMood: View {
                     .kerning(3)
                     .textCase(.uppercase)
                     .padding(20)
-                    .background(
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(mood.color.opacity(0.2))
-                    )
+                    .roundedBackground(color: mood.color)
             } else {
                 Text("MOOD")
                     .font(.headline)
@@ -57,10 +50,8 @@ struct TitleMood: View {
                     .kerning(3)
                     .foregroundStyle(.green)
                     .padding(20)
-                    .background(
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(Color.green.opacity(0.2))
-                    )
+                    .roundedBackground(color: .green)
+
             }
         }
         .padding(.bottom, 24)
@@ -77,7 +68,7 @@ struct MoodPicker: View {
             ForEach(store.moodData) { mood in
                 Button {
                     store.savedDailyMood(mood)
-                    store.showGetMissionButton = true
+                    store.getMissionButton = true
                 } label: {
                     VStack(spacing: 0) {
                         Text(mood.emoji)
@@ -102,12 +93,12 @@ struct ButtonNavToMission: View {
     @Environment(SetpOutStore.self) var store
     
     var body: some View {
-        if store.dailyMood != nil && store.showGetMissionButton {
+        if store.dailyMood != nil && store.getMissionButton {
             Button("Get my mission") {
                 store.getMission()
                 store.navigateToMissions = true
                 store.savedMission()
-                store.showGetMissionButton = false
+                store.getMissionButton = false
                 store.stopTimeRemaining = false
             }
             .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
@@ -115,11 +106,7 @@ struct ButtonNavToMission: View {
             .bold()
             .textCase(.uppercase)
             .padding(24)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(store.dailyMood?.color ?? .green)
-                    .opacity(0.1)
-            )
+            .roundedBackground(color: store.dailyMood?.color ?? .green)
         }
     }
 }

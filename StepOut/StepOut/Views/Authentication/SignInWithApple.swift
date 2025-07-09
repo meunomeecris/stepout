@@ -4,25 +4,25 @@ import AuthenticationServices
 struct SignInWithApple: View {
     @Environment(SetpOutStore.self) var store
     @AppStorage("userIdentifier") var userIdentifier = ""
+    @AppStorage("username") var usernameApple = ""
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationView {
             VStack {
                 Spacer()
-                
                 Image("logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 250, height: 250)
                 
                 Text("Step Out")
-                    .textCase(.uppercase)
-                    .opacity(0.8)
-                    .kerning(5)
                     .font(.title)
                     .bold()
+                    .kerning(5)
                     .padding(.bottom,8)
+                    .textCase(.uppercase)
+                    .opacity(0.8)
                 
                 Text("You need an account to use this feature")
                     .multilineTextAlignment(.center)
@@ -63,8 +63,9 @@ struct SignInWithApple: View {
         guard let credential = result.credential as? ASAuthorizationAppleIDCredential else { return }
         
         let userIdentifier = credential.user
-        print("User Identifier: \(userIdentifier)")
+        let usernameApple = credential.fullName?.givenName
         self.userIdentifier = userIdentifier
+        self.usernameApple = usernameApple ?? "Human"
     }
 
 }

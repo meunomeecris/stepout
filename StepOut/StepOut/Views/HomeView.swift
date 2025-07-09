@@ -13,17 +13,12 @@ struct HomeView: View {
                     MissionHome(store: _store)
                 }
                 HStack {
-                    SettingHome()
+                    MenuHome()
                     ChallengeHome()
                 }
             }
             .padding(16)
-            .onAppear {
-                store.loadDailyMood()
-                store.loadDailyMission()
-                store.loadedTracker()
-                store.loadedUsername()
-            }
+            .onAppear {store.loadUserData()}
         }
         .navigationBarBackButtonHidden(true)
     }
@@ -37,6 +32,8 @@ struct HomeView: View {
 
 struct Welcome: View {
     @Environment(SetpOutStore.self) var store
+    @Environment(\.colorScheme) var colorScheme
+    @AppStorage("username") var usernameApple = ""
     
     var body: some View {
         GeometryReader { geometry in
@@ -55,7 +52,7 @@ struct Welcome: View {
                         .font(.title2)
                         .opacity(0.8)
                     
-                    Text("\(store.usernameInput.capitalized).")
+                    Text("\(usernameApple.capitalized).")
                         .font(.largeTitle)
                         .foregroundStyle(.green)
                         .bold()
@@ -70,7 +67,7 @@ struct Welcome: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
             .background(
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.gray.opacity(0.08))
+                    .fill(.gray.opacity(0.1))
             )
         }
     }

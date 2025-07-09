@@ -1,22 +1,35 @@
 import SwiftUI
+import Lottie
 
 struct MissionView: View {
     @Environment(SetpOutStore.self) var store
+    @Environment(\.colorScheme) var colorSchem
     
     var body: some View {
         VStack(spacing: 24) {
-            if store.dailyMission !=  nil {
-                TitleMission()
-                CardMission(store: _store)
+            if store.uncompletedMission {
+                TitleView(label: "Today's mission")
+                CardMission(
+                    dailyMission: store.dailyMission ?? Mission(
+                        text: "Mission",
+                        point: 3,
+                        moodID: "happy",
+                        completed: false,
+                        date: Date()
+                    ),
+                    dailyMood: store.dailyMood ?? Mood(
+                        id: "Motivated",
+                        emoji: "😏",
+                        colorName: "yellow"
+                    )
+                )
                 Spacer()
                 ButtonCompletedMission()
+            } else if store.isMissionCompleted {
+                PopUpView(store: _store)
             } else {
-                Text("No mission yet!\nStart choosing your mood.")
-                    .font(.title)
-                    .padding(16)
-                    .multilineTextAlignment(.center)
+                MissionEmptyView()
             }
-            
         }
         .padding(16)
     }
@@ -24,25 +37,33 @@ struct MissionView: View {
 
 #Preview {
     let store = SetpOutStore()
+    var newDaily: () = store.dailyMission = Mission(text: "Mission", point: 4, moodID: "happy", completed: false, date: Date())
     MissionView()
         .environment(store)
 }
 
-struct TitleMission: View {
+struct MissionEmptyView:View {
     var body: some View {
-        Text("Today's mission")
-            .multilineTextAlignment(.center)
-            .font(.title)
+        LottieView(animation: .named("LookingAnimation"))
+            .playbackMode(.playing(.toProgress(1, loopMode: .loop)))
+        Text("No missions yet!")
             .bold()
-            .padding(.top, 24)
+            .font(.title)
+            .foregroundStyle(.green)
+        Text("Start choosing your mood.")
+            .foregroundStyle(.gray)
+            .bold()
+            .textCase(.uppercase)
+            .font(.body)
+            .kerning(2)
     }
 }
 
 struct ButtonCompletedMission: View {
     @Environment(SetpOutStore.self) var store
-
+    
     var body: some View {
-        Button("\(store.handleDailyMission() ? "Mission accomplished" : "Complete the mission")", systemImage: store.handleDailyMission() ? "flag.pattern.checkered" : "") {
+        Button("\(store.isMissionCompleted ? "Mission accomplished" : "Complete the mission")", systemImage: store.isMissionCompleted ? "flag.pattern.checkered" : "") {
             
             store.dailyMission?.completed = true
             store.savedMission()
@@ -50,80 +71,63 @@ struct ButtonCompletedMission: View {
             store.savedTracker(store.dailyTracker)
             
         }
+        .disabled(store.dailyMission!.completed)
         .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-        .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green )
+        .foregroundStyle(store.isMissionCompleted ? .gray : store.dailyMood?.color ?? .green )
         .bold()
         .textCase(.uppercase)
         .padding(24)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green )
-                .opacity(0.1)
-        )
-        
+        .roundedBackground(color: store.isMissionCompleted ? .gray : store.dailyMood?.color ?? .green )
     }
 }
 
 
-
 struct CardMission: View {
-    @Environment(SetpOutStore.self) var store
+    var dailyMission: Mission
+    var dailyMood: Mood
     
     var body: some View {
         VStack {
-            Text(store.dailyMission?.text ?? "Just Get Outhere!")
-                .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+            Text(dailyMission.text)
+                .foregroundStyle(dailyMission.completed ? .gray : dailyMood.color)
                 .font(.title2)
                 .multilineTextAlignment(.center)
                 .padding(40)
                 .bold()
             
             Divider()
-                .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+                .foregroundStyle(dailyMission.completed ? .gray : dailyMood.color)
             
             HStack {
                 Spacer()
                 HStack {
-                    Text(store.dailyMood?.emoji ?? "🌻")
-                    Text(store.dailyMission?.moodID.capitalized ?? "Mood")
+                    Text(dailyMood.emoji)
+                    Text(dailyMission.moodID.capitalized)
                         .font(.title3)
-                        .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+                        .foregroundStyle(dailyMission.completed ? .gray : dailyMood.color)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
-                        .opacity(0.1)
-                )
+                .roundedBackground(color: dailyMission.completed ? .gray : dailyMood.color)
                 Spacer()
                 HStack {
-                    Text("\(store.dailyMission?.point ?? 3)")
+                    Text("\(dailyMission.point)")
                         .font(.title2)
-                        .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+                        .foregroundStyle(dailyMission.completed ? .gray : dailyMood.color)
                     Text("Points")
                         .font(.caption)
                         .textCase(.uppercase)
                         .kerning(2)
-                        .foregroundStyle(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
+                        .foregroundStyle(dailyMission.completed ? .gray : dailyMood.color)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(store.handleDailyMission() ? .gray : store.dailyMood?.color ?? .green)
-                        .opacity(0.1)
-                )
+                .roundedBackground(color: dailyMission.completed ? .gray : dailyMood.color)
                 Spacer()
             }
             .padding()
         }
         .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(store.handleDailyMission() ?.gray : store.dailyMood?.color ?? .green)
-                .opacity(0.1)
-        )
+        .roundedBackground(color: dailyMission.completed ? .gray : dailyMood.color)
     }
 }
-

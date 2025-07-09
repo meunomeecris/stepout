@@ -18,11 +18,7 @@ struct HomeView: View {
                 }
             }
             .padding(16)
-            .onAppear {
-                store.loadDailyMood()
-                store.loadDailyMission()
-                store.loadedTracker()
-            }
+            .onAppear {store.loadUserData()}
         }
         .navigationBarBackButtonHidden(true)
     }
@@ -36,8 +32,8 @@ struct HomeView: View {
 
 struct Welcome: View {
     @Environment(SetpOutStore.self) var store
-    @AppStorage("username") var usernameApple = ""
     @Environment(\.colorScheme) var colorScheme
+    @AppStorage("username") var usernameApple = ""
     
     var body: some View {
         GeometryReader { geometry in

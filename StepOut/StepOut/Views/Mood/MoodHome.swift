@@ -25,11 +25,7 @@ struct MoodHome: View {
                     }
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(store.dailyMood?.color ?? .yellow)
-                        .opacity(0.2)
-                )
+                .roundedBackground(color: store.dailyMood?.color ?? .yellow )
             }
         }
     }

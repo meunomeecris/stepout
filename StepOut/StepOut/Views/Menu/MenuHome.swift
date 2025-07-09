@@ -20,10 +20,7 @@ struct MenuHome: View {
                         .opacity(0.8)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.cyan.opacity(0.2))
-                )
+                .roundedBackground(color: .cyan)
             }
         }
     }

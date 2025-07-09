@@ -21,6 +21,14 @@ import SwiftUI
         flowState = isUserLogged ? .home : .login
     }
     
+    // Home's Data {
+    
+    func loadUserData() {
+        loadDailyMood()
+        loadDailyMission()
+        loadedTracker()
+    }
+    
     // Mood's Data
     let moodData: [Mood] = Mood.allMoods
     var dailyMood: Mood? = nil
@@ -35,6 +43,9 @@ import SwiftUI
     
     // Tracker's Data
     var dailyTracker: Tracker = Tracker(completed: 0, point: 0, streak: 0, date: Calendar.current.startOfDay(for: Date()))
+    
+    // PopUp
+    var pointsRecieved = false
     
                                             
     //MARK: - App's Logic
@@ -68,6 +79,7 @@ import SwiftUI
     }
     
     // Mood
+        
     func createdDailyMood(_ mood: Mood) -> DailyMood {
         return DailyMood(mood: mood, date: Calendar.current.startOfDay(for: Date()))
     }
@@ -84,6 +96,22 @@ import SwiftUI
     }
     
     // Mission
+    
+    var isMissionCompleted: Bool {
+        dailyMission?.completed == true
+    }
+    
+    var hasMission: Bool {
+        dailyMission != nil
+    }
+    
+    var uncompletedMission: Bool {
+        if let mission = dailyMission {
+            return !mission.completed
+        }
+        return false
+    }
+    
     private func timeRemainingForMissionEnds() {
         guard let midnight = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date().addingTimeInterval(86400)) else {
             timeRemaining = "Mission's"
@@ -123,13 +151,6 @@ import SwiftUI
     func loadDailyMission() {
         let mission = missionClient.loadMission()
         dailyMission = mission
-    }
-    
-    func isMissionCompleted() -> Bool {
-        guard let mission = dailyMission else {
-            return false
-        }
-        return mission.completed
     }
     
     // Tracker

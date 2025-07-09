@@ -16,12 +16,12 @@ struct TextFieldView: ViewModifier {
 }
 
 extension View {
-    func textFieldModifier() -> some View {
+    func textFieldStyle() -> some View {
         self.modifier(TextFieldView())
     }
 }
 
 #Preview {
     TextField("Test", text: .constant(""))
-        .textFieldModifier()
+        .textFieldStyle()
 }

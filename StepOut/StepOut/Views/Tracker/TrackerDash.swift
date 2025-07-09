@@ -31,10 +31,7 @@ struct TrackerDash: View {
             }
             .padding(.horizontal,16)
             .frame(width: geometry.size.width, height: geometry.size.height)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(colorScheme == .dark ? .green.opacity(0.25) : .green.opacity(0.3))
-            )
+            .roundedBackground(color: colorScheme == .dark ? .green.opacity(1.2) : .green.opacity(0.9))
         }
     }
 }

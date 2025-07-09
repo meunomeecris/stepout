@@ -10,11 +10,11 @@ struct MissionView: View {
             if store.uncompletedMission {
                 TitleView(label: "Today's mission")
                 CardMission(
-                    dailyMission: store.dailyMission ?? store.standartDailyMission,
-                    dailyMood: store.dailyMood ?? store.standartDailyMood
+                    dailyMood: store.handledMood(),
+                    dailyMission: store.handledMission()
                 )
                 Spacer()
-                ButtonCompletedMission()
+                ComplededMissionButton()
             } else if store.isMissionCompleted {
                 PopUpView(store: _store)
             } else {
@@ -27,12 +27,11 @@ struct MissionView: View {
 
 #Preview {
     let store = SetpOutStore()
-    var newDaily: () = store.dailyMission = Mission(text: "Mission", point: 4, moodID: "happy", completed: false, date: Date())
     MissionView()
         .environment(store)
 }
 
-struct MissionEmptyView:View {
+private struct MissionEmptyView:View {
     var body: some View {
         LottieView(animation: .named("LookingAnimation"))
             .playbackMode(.playing(.toProgress(1, loopMode: .loop)))
@@ -49,7 +48,7 @@ struct MissionEmptyView:View {
     }
 }
 
-struct ButtonCompletedMission: View {
+private struct ComplededMissionButton: View {
     @Environment(SetpOutStore.self) var store
     
     var body: some View {
@@ -63,18 +62,17 @@ struct ButtonCompletedMission: View {
         }
         .disabled(store.dailyMission!.completed)
         .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-        .foregroundStyle(store.isMissionCompleted ? .gray : store.dailyMood?.color ?? .green )
+        .foregroundStyle(store.isMissionCompleted ? .gray : store.handledMood().color)
         .bold()
         .textCase(.uppercase)
         .padding(24)
-        .roundedBackground(color: store.isMissionCompleted ? .gray : store.dailyMood?.color ?? .green )
+        .roundedBackground(color: store.isMissionCompleted ? .gray : store.handledMood().color)
     }
 }
 
-
-struct CardMission: View {
-    var dailyMission: Mission
+private struct CardMission: View {
     var dailyMood: Mood
+    var dailyMission: Mission
     
     var body: some View {
         VStack {

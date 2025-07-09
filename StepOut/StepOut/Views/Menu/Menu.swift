@@ -5,7 +5,7 @@ struct Setting:View {
     @AppStorage("userIdentifier") var userIdentifier = ""
     @AppStorage("isSignedIn") var isSignedIn = false
     
-    var body: some View {
+    var body: some View {        
         ButtonView(
             label: "Log Out",
             color: .green) {
@@ -18,7 +18,7 @@ struct Setting:View {
         ButtonView(
             label: "Delet my account",
             color: .green) {
-                store.deleteAccount()
+                store.deletedAccount()
             }
     }
 }

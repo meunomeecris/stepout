@@ -8,12 +8,12 @@ struct MoodView: View {
         
         NavigationStack {
             VStack(spacing: 24) {
-                TitleMood(store: _store)
+                TitleMood(isValid: store.hasMood, mood: store.handledMood())
                 MoodPicker(store: _store)
                 Spacer()
                 ButtonNavToMission(store: _store)
             }
-            .navigationDestination(isPresented: $bStore.navigateToMissions) {
+            .navigationDestination(isPresented: $bStore.navigateToMission) {
                 MissionView(store: _store)
             }
         }
@@ -26,15 +26,15 @@ struct MoodView: View {
         .environment(store)
 }
 
-
-struct TitleMood: View {
-    @Environment(SetpOutStore.self) var store
+private struct TitleMood: View {
+    var isValid: Bool
+    var mood: Mood
     
     var body: some View {
         VStack (spacing: 24) {
             TitleView(label: "How are you\nfeeling today?")
             
-            if let mood = store.dailyMood {
+            if isValid {
                 Text(mood.id)
                     .font(.headline)
                     .bold()
@@ -58,8 +58,7 @@ struct TitleMood: View {
     }
 }
 
-
-struct MoodPicker: View {
+private struct MoodPicker: View {
     @Environment(SetpOutStore.self) var store
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
@@ -88,25 +87,23 @@ struct MoodPicker: View {
     }
 }
 
-
-struct ButtonNavToMission: View {
+private struct ButtonNavToMission: View {
     @Environment(SetpOutStore.self) var store
     
     var body: some View {
-        if store.dailyMood != nil && store.getMissionButton {
+        if store.hasMood && store.getMissionButton {
             Button("Get my mission") {
                 store.getMission()
-                store.navigateToMissions = true
+                store.navigateToMission = true
                 store.savedMission()
                 store.getMissionButton = false
-                store.stopTimeRemaining = false
             }
             .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-            .foregroundStyle(store.dailyMood?.color ?? .green)
+            .foregroundStyle(store.handledMood().color)
             .bold()
             .textCase(.uppercase)
             .padding(24)
-            .roundedBackground(color: store.dailyMood?.color ?? .green)
+            .roundedBackground(color: store.handledMood().color)
         }
     }
 }

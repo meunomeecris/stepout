@@ -2,23 +2,28 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(SetpOutStore.self) var store
+    @AppStorage("username") var usernameApple = ""
     
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
-                Welcome(store: _store)
+                GreetingView(
+                    greeting: store.greeting(),
+                    username: usernameApple,
+                    date: store.currentDate()
+                )
                 TrackerDash(store: _store)
-                HStack {
+                HStack(spacing: 16) {
                     MoodHome(store: _store)
                     MissionHome(store: _store)
                 }
-                HStack {
+                HStack(spacing: 16) {
                     MenuHome()
                     ChallengeHome()
                 }
             }
             .padding(16)
-            .onAppear {store.loadUserData()}
+            .onAppear {store.onAppearLoadUserData()}
         }
         .navigationBarBackButtonHidden(true)
     }
@@ -30,10 +35,12 @@ struct HomeView: View {
         .environment(store)
 }
 
-struct Welcome: View {
-    @Environment(SetpOutStore.self) var store
+private struct GreetingView: View {
     @Environment(\.colorScheme) var colorScheme
-    @AppStorage("username") var usernameApple = ""
+    
+    var greeting: String
+    var username: String
+    var date: String
     
     var body: some View {
         GeometryReader { geometry in
@@ -48,27 +55,24 @@ struct Welcome: View {
                 
                 HStack {
                     Spacer()
-                    Text(store.greeting())
+                    Text(greeting)
                         .font(.title2)
                         .opacity(0.8)
                     
-                    Text("\(usernameApple.capitalized).")
+                    Text(username)
                         .font(.largeTitle)
                         .foregroundStyle(.green)
                         .bold()
                     Spacer()
                 }
                 
-                Text(store.currentDate())
+                Text(date)
                     .textCase(.uppercase)
                     .font(.caption)
                     .kerning(2)
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(.gray.opacity(0.1))
-            )
+            .roundedBackground(color: .gray)
         }
     }
 }

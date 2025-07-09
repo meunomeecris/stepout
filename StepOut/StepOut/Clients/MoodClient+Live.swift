@@ -3,13 +3,17 @@ import Foundation
 struct MoodClientLive: MoodClient {
     private let userDefaultKey = "savedUserMood"
     
+    func createMood(_ mood: Mood) -> DailyMood {
+        return DailyMood(mood: mood, date: Calendar.current.startOfDay(for: Date()))
+    }
+    
     func saveMood(_ daily: DailyMood) {
         if let data = try? JSONEncoder().encode(daily) {
             UserDefaults.standard.set(data, forKey: userDefaultKey)
         }
     }
     
-    func loadMood() -> DailyMood {
+    func loadMood() -> DailyMood? {
         let calendar = Calendar.current
         let now = Date()
         
@@ -19,7 +23,7 @@ struct MoodClientLive: MoodClient {
                 return savedMoods
             }
         }
-        return DailyMood(mood: Mood.init(id: "Mood", emoji: "🌻", colorName: "yellow"), date: Date())
+        return nil
     }
     
     func deleteMood() {

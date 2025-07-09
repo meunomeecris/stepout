@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct ChallengeHome: View {
-    @Environment(SetpOutStore.self) var store
 
     var body: some View {
         NavigationLink(destination: ChallengeView()) {

@@ -5,20 +5,17 @@ struct MissionHome: View {
     
     var body: some View {
         NavigationLink(destination: MissionView(store: _store)) {
-            GeometryReader { geometry in
-                VStack(spacing: store.stopTimeRemaining ? 16 : 18) {
-                    if store.hasMission {
-                        StartedDailyMission(store: _store)
-                    } else {
-                        EmptyDailyMission(store: _store)
-                    }
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .roundedBackground(color: .purple)
+            if store.uncompletedMission {
+                StartedDailyMission(store: _store)
+            } else if store.isMissionCompleted {
+                CompletedDailyMission()
+            } else {
+                EmptyDailyMission()
             }
         }
     }
 }
+
 
 #Preview {
     let store = SetpOutStore()
@@ -33,55 +30,80 @@ private struct StartedDailyMission: View {
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        Image(systemName: "\(store.stopTimeRemaining ? "": "flag.pattern.checkered")")
-            .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-            .foregroundStyle(.purple)
-            .opacity(0.8)
-            .font(.title)
-        
-        Text("\(store.stopTimeRemaining ? "🎉" : store.timeRemaining )")
-            .foregroundStyle(.purple)
-            .bold()
-            .opacity(0.8)
-            .font(store.stopTimeRemaining ? .system(size: 55) : .title)
-            .onAppear {
-                store.isNewTimeRemainingStarted()
+        GeometryReader { geometry in
+            VStack(spacing: 12) {
+                Image(systemName: "flag.pattern.checkered")
+                    .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
+                    .foregroundStyle(.purple)
+                    .opacity(0.8)
+                    .font(.title)
+                
+                Text("\(store.timeRemaining)")
+                    .foregroundStyle(.purple)
+                    .bold()
+                    .opacity(0.8)
+                    .font(.title)
+                    .onAppear {
+                        store.timeRemainingForMissionEnds()
+                    }
+                    .onReceive(timer) { _ in
+                        store.timeRemainingForMissionEnds()
+                    }
+                
+                Text("To finish\nthe mission")
+                    .foregroundStyle(colorScheme == .dark ? .white.opacity(0.6) : .purple.opacity(0.8))
+                    .textCase(.uppercase)
+                    .font(.caption)
+                    .kerning(2)
             }
-            .onReceive(timer) { _ in
-                store.isNewTimeRemainingStarted()
-            }
-        
-        Text("\(store.stopTimeRemaining ? "Accomplished Mission" : "To finish\nthe mission")")
-            .foregroundStyle(colorScheme == .dark ? .white.opacity(0.6) : .purple.opacity(0.8))
-            .textCase(.uppercase)
-            .font(.caption)
-            .kerning(2)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .roundedBackground(color: .purple)
+        }
     }
 }
 
-
-private struct EmptyDailyMission: View {
-    @Environment(SetpOutStore.self) var store
+private struct CompletedDailyMission: View {
     @Environment(\.colorScheme) var colorScheme
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        Image(systemName: "flag.pattern.checkered")
-            .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
-            .foregroundStyle(.purple)
-            .opacity(0.8)
-            .font(.title)
-        
-        Text("Mission")
-            .foregroundStyle(.purple)
-            .bold()
-            .opacity(0.8)
-            .font(.title)
-            .onAppear {
-                store.isNewTimeRemainingStarted()
+        GeometryReader { geometry in
+            VStack(spacing: 16) {
+                Text("🎉")
+                    .font(.system(size: 55))
+                    .foregroundStyle(.purple)
+                    .bold()
+                    .opacity(0.8)
+                
+                Text("Accomplished Mission")
+                    .foregroundStyle(colorScheme == .dark ? .white.opacity(0.6) : .purple.opacity(0.8))
+                    .textCase(.uppercase)
+                    .font(.caption)
+                    .kerning(2)
             }
-            .onReceive(timer) { _ in
-                store.isNewTimeRemainingStarted()
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .roundedBackground(color: .purple)
+        }
+    }
+}
+
+private struct EmptyDailyMission: View {
+    var body: some View {
+        GeometryReader { geometry in
+            VStack(spacing: 12) {
+                Image(systemName: "flag.pattern.checkered")
+                    .symbolEffect(.bounce.down.wholeSymbol, options: .nonRepeating)
+                    .foregroundStyle(.purple)
+                    .opacity(0.8)
+                    .font(.title)
+                
+                Text("Mission")
+                    .foregroundStyle(.purple)
+                    .bold()
+                    .opacity(0.8)
+                    .font(.title)
             }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .roundedBackground(color: .purple)
+        }
     }
 }

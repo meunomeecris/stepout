@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct MenuHome: View {
-    @Environment(SetpOutStore.self) var store
-    
     var body: some View {
         NavigationLink(destination: Setting()) {
             GeometryReader { geometry in

@@ -1,0 +1,19 @@
+name: iOS Build
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-14
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Xcode
+      run: sudo xcode-select -s /Applications/Xcode_15.3.app
+
+    - name: Build project
+      run: xcodebuild -project YourProject.xcodeproj -scheme YourScheme -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16,OS=17.0' build
+

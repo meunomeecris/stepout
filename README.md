@@ -42,10 +42,10 @@ MVC
 Xcode
 
 ## Disclaimer
-Step Out is a motivational tool to inspire action and exploration. All suggested missions are meant to be safe and doable. Always choose what feels right for you and respect your limits.
+Get Outhere is a motivational tool to inspire action and exploration. All suggested missions are meant to be safe and doable. Always choose what feels right for you and respect your limits.
 
 ## Contact
 Got feedback, ideas, or want to collaborate? Reach out at [meunomeecriss@gmail.com](mailto:meunomeecriss@gmail.com)
-# [Buy me a beer🍻?](https://www.buymeacoffee.com/meunomeecris)
+# [Buy us a beer🍻?](https://www.buymeacoffee.com/meunomeecris)
 
 Developed by 🇧🇷 Cris Messias

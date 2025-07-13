@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct Root: View {
-    @Environment(SetpOutStore.self) var store
+    @Environment(StepOutStore.self) var store
     
     var body: some View {
         Group {
@@ -18,7 +18,7 @@ struct Root: View {
 }
 
 #Preview {
-    let store = SetpOutStore()
+    let store = StepOutStore()
     Root()
         .environment(store)
 }

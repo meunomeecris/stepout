@@ -2,7 +2,7 @@ import SwiftUI
 import Lottie
 
 struct PopUpView: View {
-    @Environment(SetpOutStore.self) var store
+    @Environment(StepOutStore.self) var store
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -29,7 +29,7 @@ struct PopUpView: View {
 }
 
 #Preview {
-    let store = SetpOutStore()
+    let store = StepOutStore()
     PopUpView()
         .environment(store)
 }

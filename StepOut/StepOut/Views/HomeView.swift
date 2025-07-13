@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @Environment(SetpOutStore.self) var store
+    @Environment(StepOutStore.self) var store
     @AppStorage("username") var usernameApple = ""
     
     var body: some View {
@@ -30,7 +30,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    let store = SetpOutStore()
+    let store = StepOutStore()
     HomeView()
         .environment(store)
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct Setting:View {
-    @Environment(SetpOutStore.self) var store
+    @Environment(StepOutStore.self) var store
     @AppStorage("userIdentifier") var userIdentifier = ""
     @AppStorage("isSignedIn") var isSignedIn = false
     
@@ -25,7 +25,7 @@ struct Setting:View {
 
 
 #Preview {
-    let store = SetpOutStore()
+    let store = StepOutStore()
     Setting()
         .environment(store)
 }

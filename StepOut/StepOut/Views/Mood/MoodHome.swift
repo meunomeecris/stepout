@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MoodHome: View {
-    @Environment(SetpOutStore.self) var store
+    @Environment(StepOutStore.self) var store
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -16,7 +16,7 @@ struct MoodHome: View {
 }
 
 #Preview {
-    let store = SetpOutStore()
+    let store = StepOutStore()
     MoodHome()
         .environment(store)
 }

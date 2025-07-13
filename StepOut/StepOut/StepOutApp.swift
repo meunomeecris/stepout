@@ -1,8 +1,8 @@
 import SwiftUI
 
 @main
-struct SetpOutApp: App {
-    private var store = SetpOutStore()
+struct StepOutApp: App {
+    private var store = StepOutStore()
     
     var body: some Scene {
         WindowGroup {

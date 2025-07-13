@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MissionHome: View {
-    @Environment(SetpOutStore.self) var store
+    @Environment(StepOutStore.self) var store
     
     var body: some View {
         NavigationLink(destination: MissionView(store: _store)) {
@@ -18,14 +18,14 @@ struct MissionHome: View {
 
 
 #Preview {
-    let store = SetpOutStore()
+    let store = StepOutStore()
     MissionHome()
         .environment(store)
 }
 
 
 private struct StartedDailyMission: View {
-    @Environment(SetpOutStore.self) var store
+    @Environment(StepOutStore.self) var store
     @Environment(\.colorScheme) var colorScheme
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     

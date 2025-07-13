@@ -26,7 +26,7 @@ struct MenuHome: View {
 
 
 #Preview {
-    let store = SetpOutStore()
+    let store = StepOutStore()
     MenuHome()
         .environment(store)
 }

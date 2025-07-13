@@ -2,7 +2,7 @@ import SwiftUI
 import Lottie
 
 struct MissionView: View {
-    @Environment(SetpOutStore.self) var store
+    @Environment(StepOutStore.self) var store
     @Environment(\.colorScheme) var colorSchem
     
     var body: some View {
@@ -26,7 +26,7 @@ struct MissionView: View {
 }
 
 #Preview {
-    let store = SetpOutStore()
+    let store = StepOutStore()
     MissionView()
         .environment(store)
 }
@@ -49,7 +49,7 @@ private struct MissionEmptyView:View {
 }
 
 private struct ComplededMissionButton: View {
-    @Environment(SetpOutStore.self) var store
+    @Environment(StepOutStore.self) var store
     
     var body: some View {
         Button("\(store.isMissionCompleted ? "Mission accomplished" : "Complete the mission")", systemImage: store.isMissionCompleted ? "flag.pattern.checkered" : "") {

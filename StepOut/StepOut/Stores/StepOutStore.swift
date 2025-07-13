@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-@Observable final class SetpOutStore {
+@Observable final class StepOutStore {
     private let moodClient = MoodClientLive()
     private let missionClient = MissionClientLive()
     private let trackerClient = TrackerClientLive()

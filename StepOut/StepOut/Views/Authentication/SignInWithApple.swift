@@ -2,7 +2,7 @@ import SwiftUI
 import AuthenticationServices
 
 struct SignInWithApple: View {
-    @Environment(SetpOutStore.self) var store
+    @Environment(StepOutStore.self) var store
     @AppStorage("userIdentifier") var userIdentifier = ""
     @AppStorage("username") var usernameApple = ""
     @Environment(\.colorScheme) var colorScheme
@@ -72,7 +72,7 @@ struct SignInWithApple: View {
 
 
 #Preview {
-    let store = SetpOutStore()
+    let store = StepOutStore()
     SignInWithApple()
         .environment(store)
 }

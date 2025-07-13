@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TrackerDash: View {
-    @Environment(SetpOutStore.self) var store
+    @Environment(StepOutStore.self) var store
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {

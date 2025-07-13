@@ -27,7 +27,7 @@ struct ChallengeHome: View {
 
 
 #Preview {
-    let store = SetpOutStore()
+    let store = StepOutStore()
     ChallengeHome()
         .environment(store)
 }

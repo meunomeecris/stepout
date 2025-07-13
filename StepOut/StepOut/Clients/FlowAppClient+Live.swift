@@ -1,6 +1,6 @@
 import Foundation
 
-struct AuthClientLive: AuthClient {
+struct FlowAppClientLive: FlowApp {
     private let flowStateUerDefaultKey = "savedAppFlowState"
     
     func savedAppFlowState(_ state: Bool) {

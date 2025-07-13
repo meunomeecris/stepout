@@ -5,7 +5,7 @@ import SwiftUI
     private let moodClient = MoodClientLive()
     private let missionClient = MissionClientLive()
     private let trackerClient = TrackerClientLive()
-    private let authClient = AuthClientLive()
+    private let authClient = FlowAppClientLive()
     
     //Authentication
     var flowState: AppFlowState = .login

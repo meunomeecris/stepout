@@ -18,7 +18,7 @@
                BlueprintIdentifier = "8A1BE8BC2E145E3200A627DD"
                BuildableName = "StepOut.app"
                BlueprintName = "StepOut"
-               ReferencedContainer = "container:SetpOut.xcodeproj">
+               ReferencedContainer = "container:StepOut.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,7 +47,7 @@
             BlueprintIdentifier = "8A1BE8BC2E145E3200A627DD"
             BuildableName = "StepOut.app"
             BlueprintName = "StepOut"
-            ReferencedContainer = "container:SetpOut.xcodeproj">
+            ReferencedContainer = "container:StepOut.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "8A1BE8BC2E145E3200A627DD"
             BuildableName = "StepOut.app"
             BlueprintName = "StepOut"
-            ReferencedContainer = "container:SetpOut.xcodeproj">
+            ReferencedContainer = "container:StepOut.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

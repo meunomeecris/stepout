@@ -37,7 +37,7 @@ Swift + SwiftUI
 
 UserDefaults for simple data storage
 
-MVC
+MVVM
 
 Xcode
 
